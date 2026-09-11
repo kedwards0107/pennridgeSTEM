@@ -757,6 +757,9 @@ a{ color: inherit; }
   .station-stage{ aspect-ratio: 1 / 1; }
   .station-stage-wave{ aspect-ratio: 5 / 4; }
   .controls-row{ flex-direction: column; align-items: stretch; }
+  /* flex-basis applies to the main axis: once this column flips, the row
+     layout's 200px width basis would become a 200px tall each. */
+  .controls-row label{ flex: 0 0 auto; }
 }
 
 /* ───────────── phones & small tablets ─────────────
