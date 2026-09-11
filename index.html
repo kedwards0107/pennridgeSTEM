@@ -1,0 +1,467 @@
+<!-- ═══════════════════════════════════════════════════════════════
+     SIGN-UP FORM — replace the placeholder URL in main.js (line 1,
+     SIGNUP_FORM_URL) with your Google Form link. Every button marked
+     data-signup picks it up automatically.
+     ═══════════════════════════════════════════════════════════════ -->
+<title>Pennridge STEM Initiative</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..900&family=DM+Mono:wght@400;500&family=Newsreader:opsz,wght@6..72,300..700&display=swap">
+<link rel="stylesheet" href="styles.css">
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="topbar">
+  <a class="brand" href="#top">
+    <span class="brand-mark" aria-hidden="true">
+      <svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="14" stroke="currentColor" stroke-width="2"/><ellipse cx="16" cy="16" rx="14" ry="5.5" stroke="currentColor" stroke-width="2"/><ellipse cx="16" cy="16" rx="5.5" ry="14" stroke="currentColor" stroke-width="2"/><circle cx="16" cy="16" r="3" fill="currentColor"/></svg>
+    </span>
+    <span class="brand-text"><b>Pennridge STEM Initiative</b><i>Pennridge School District</i></span>
+  </a>
+  <nav class="topnav" aria-label="Sections">
+    <a href="#pipeline">Pipeline</a>
+    <a href="#stations">Lab Stations</a>
+    <a href="#compete">Compete</a>
+    <a href="#timeline">Timeline</a>
+    <a href="#lead">Lead</a>
+    <a class="topnav-cta" href="#join">Get Involved</a>
+    <a class="topnav-sign" data-signup href="https://forms.gle/REPLACE-WITH-YOUR-FORM" target="_blank" rel="noopener">Sign up</a>
+  </nav>
+</header>
+
+<main id="main">
+
+  <!-- ─────────────── HERO ─────────────── -->
+  <section class="hero" id="top">
+    <canvas class="ripple" id="ripple" aria-hidden="true"></canvas>
+    <div class="hero-inner">
+      <p class="eyebrow">Elementary &middot; Middle &middot; High School &nbsp;—&nbsp; one pathway</p>
+      <h1 class="hero-title">
+        <span class="line">Every</span>
+        <span class="line"><em>hypothesis</em></span>
+        <span class="line">starts here</span>
+      </h1>
+      <p class="hero-lede">
+        The Pennridge STEM Initiative connects every grade level in the district through
+        hands-on exploration days, an annual challenge-based science fair, and student
+        mentorship — a pathway built to outlive the students who started it.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" data-signup href="https://forms.gle/REPLACE-WITH-YOUR-FORM"
+           target="_blank" rel="noopener">Sign up for the fair</a>
+        <a class="btn btn-ghost" href="#stations">Play a lab station ↓</a>
+      </div>
+      <dl class="hero-stats">
+        <div><dt>Divisions</dt><dd>3</dd><span>elementary, middle, high</span></div>
+        <div><dt>Team size</dt><dd>1–3</dd><span>or compete solo</span></div>
+        <div><dt>Student leaders</dt><dd>~10</dd><span>per year, trained a year ahead</span></div>
+        <div><dt>Fair date</dt><dd class="tba">TBA</dd><span>first year now in planning</span></div>
+      </dl>
+    </div>
+    <p class="ripple-caption" id="rippleCaption">
+      <span class="dot" aria-hidden="true"></span>
+      Live: two-source wave interference. Drag either source.
+    </p>
+  </section>
+
+  <!-- ─────────────── MARQUEE ─────────────── -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Scientific investigation</span><span>✦</span><span>Engineering design</span><span>✦</span>
+      <span>Computer science</span><span>✦</span><span>Environmental science</span><span>✦</span>
+      <span>Robotics</span><span>✦</span><span>Data science</span><span>✦</span>
+      <span>Entrepreneurship</span><span>✦</span><span>Applied problem-solving</span><span>✦</span>
+      <span>Scientific investigation</span><span>✦</span><span>Engineering design</span><span>✦</span>
+      <span>Computer science</span><span>✦</span><span>Environmental science</span><span>✦</span>
+      <span>Robotics</span><span>✦</span><span>Data science</span><span>✦</span>
+      <span>Entrepreneurship</span><span>✦</span><span>Applied problem-solving</span><span>✦</span>
+    </div>
+  </div>
+
+  <!-- ─────────────── PIPELINE ─────────────── -->
+  <section class="panel" id="pipeline">
+    <div class="panel-head">
+      <p class="kicker">01 — The pathway</p>
+      <h2>Three divisions,<br>one continuous track</h2>
+      <p class="panel-lede">
+        Most STEM programs are islands. PSI is a pipeline: a fifth grader who makes slime at an
+        Exploration Day becomes an eighth grader with a project board, becomes a junior running
+        the station she once visited.
+      </p>
+    </div>
+
+    <ol class="pipeline">
+      <li class="stage stage-e">
+        <div class="stage-rail" aria-hidden="true"><span class="stage-node"></span></div>
+        <div class="stage-body">
+          <p class="stage-grade">Grades K–5</p>
+          <h3>STEM Exploration Days</h3>
+          <p>Rotating hands-on stations run by high school volunteers. Students cycle through
+             several disciplines in a single morning — the point is one great first memory of
+             science, not a score.</p>
+          <ul class="tags">
+            <li>Volcanic eruptions</li><li>Oobleck</li><li>Wave tanks</li><li>More TBD</li>
+          </ul>
+        </div>
+      </li>
+      <li class="stage stage-m">
+        <div class="stage-rail" aria-hidden="true"><span class="stage-node"></span></div>
+        <div class="stage-body">
+          <p class="stage-grade">Grades 6–8</p>
+          <h3>Pennridge Science Contest</h3>
+          <p>The annual middle school challenge. Solo or teams of up to three, projects built
+             ahead of the event and judged against that year's theme. Physical builds,
+             mathematical models, and theoretical work all count.</p>
+          <ul class="tags">
+            <li>Chemistry</li><li>Biology</li><li>Physics</li><li>Engineering</li><li>Math</li>
+          </ul>
+          <p class="stage-note">Top finishers may earn an invitation to compete at the high school fair.</p>
+        </div>
+      </li>
+      <li class="stage stage-h">
+        <div class="stage-rail" aria-hidden="true"><span class="stage-node"></span></div>
+        <div class="stage-body">
+          <p class="stage-grade">Grades 9–12</p>
+          <h3>STEM Challenge &amp; Showcase</h3>
+          <p>The advanced division, themed alongside the middle school contest and judged by
+             participating teachers and faculty. Top three projects are recognized at closing.
+             Students who aren't competing mentor, judge-shadow, and run the elementary stations.</p>
+          <ul class="tags">
+            <li>Research</li><li>Robotics</li><li>Software</li><li>Data science</li><li>Innovation</li>
+          </ul>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ─────────────── STATIONS ─────────────── -->
+  <section class="panel panel-dark" id="stations">
+    <div class="panel-head">
+      <p class="kicker">02 — Try it now</p>
+      <h2>Three stations,<br>running live</h2>
+      <p class="panel-lede">
+        These are the real Exploration Day experiments, simulated in your browser with the same
+        physics and chemistry the elementary students will see on a folding table. Go ahead —
+        break something.
+      </p>
+    </div>
+
+    <div class="stations">
+
+      <!-- Station: Oobleck -->
+      <article class="station">
+        <header class="station-head">
+          <p class="station-no">Station 02</p>
+          <h3>Oobleck</h3>
+          <p class="station-sub">Non-Newtonian fluid · shear thickening</p>
+        </header>
+        <div class="station-stage">
+          <canvas id="oobleck"></canvas>
+          <p class="station-hint" id="oobleckHint">Drag through the cornstarch slowly, then fast.</p>
+        </div>
+        <div class="readout">
+          <div><span class="rl">Shear rate</span><span class="rv"><b id="ooShear">0</b> s⁻¹</span></div>
+          <div><span class="rl">Apparent viscosity</span><span class="rv"><b id="ooVisc">1.2</b> Pa·s</span></div>
+          <div><span class="rl">State</span><span class="rv"><b id="ooState" class="pill pill-fluid">FLUID</b></span></div>
+        </div>
+        <p class="station-why">
+          <b>Why it happens.</b> Cornstarch grains float in water with a thin lubricating layer between
+          them. Push slowly and they slide past each other. Push fast and the water can't escape
+          the gaps quickly enough — the grains jam into a packed lattice and the mixture answers
+          like a solid. Newton's laws, in a bowl.
+        </p>
+      </article>
+
+      <!-- Station: Volcano -->
+      <article class="station">
+        <header class="station-head">
+          <p class="station-no">Station 01</p>
+          <h3>Volcanic Eruption</h3>
+          <p class="station-sub">Acid–base reaction · stoichiometry</p>
+        </header>
+        <div class="station-stage">
+          <canvas id="volcano"></canvas>
+        </div>
+        <div class="controls">
+          <label for="soda">Baking soda <b><span id="sodaVal">8.0</span> g</b>
+            <input type="range" id="soda" min="0" max="30" step="0.5" value="8">
+          </label>
+          <label for="vinegar">Vinegar (5% acetic) <b><span id="vinVal">120</span> mL</b>
+            <input type="range" id="vinegar" min="0" max="400" step="5" value="120">
+          </label>
+          <button class="btn btn-erupt" id="eruptBtn" type="button">Erupt</button>
+        </div>
+        <div class="readout">
+          <div><span class="rl">Limiting reagent</span><span class="rv"><b id="vLimit">NaHCO₃</b></span></div>
+          <div><span class="rl">CO₂ produced</span><span class="rv"><b id="vMol">0.095</b> mol</span></div>
+          <div><span class="rl">Gas volume @ 22 °C</span><span class="rv"><b id="vVol">2.3</b> L</span></div>
+        </div>
+        <p class="station-why">
+          <b>The equation.</b> NaHCO₃ + CH₃COOH → CO₂ + H₂O + NaCH₃COO. One mole of each reactant
+          makes one mole of carbon dioxide, so whichever runs out first caps the eruption. Balance
+          them and you get the biggest foam column for the least mess — which is exactly the
+          lesson.
+        </p>
+      </article>
+
+      <!-- Station: Waves -->
+      <article class="station station-wide">
+        <header class="station-head">
+          <p class="station-no">Station 03</p>
+          <h3>Constructive &amp; Destructive Waves</h3>
+          <p class="station-sub">Superposition · interference on a string</p>
+        </header>
+        <div class="station-stage station-stage-wave">
+          <canvas id="string"></canvas>
+        </div>
+        <div class="controls controls-row">
+          <label for="freqA">Pulse A wavelength <b><span id="freqAVal">1.0</span>×</b>
+            <input type="range" id="freqA" min="0.5" max="2" step="0.05" value="1">
+          </label>
+          <label for="phase">Pulse B phase <b><span id="phaseVal">180</span>°</b>
+            <input type="range" id="phase" min="0" max="360" step="5" value="180">
+          </label>
+          <div class="seg" role="group" aria-label="Show">
+            <button type="button" class="seg-btn is-on" data-show="all">Both + sum</button>
+            <button type="button" class="seg-btn" data-show="sum">Sum only</button>
+          </div>
+        </div>
+        <p class="station-why">
+          <b>Superposition.</b> Two waves meeting on the same string don't collide — they add. Set the
+          phase to 0° and crests stack into a wave twice as tall (constructive). Set it to 180° and
+          every crest lands on a trough, flattening the string to nothing (destructive). The energy
+          isn't gone; it's redistributed.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ─────────────── COMPETE ─────────────── -->
+  <section class="panel" id="compete">
+    <div class="panel-head">
+      <p class="kicker">03 — The fair</p>
+      <h2>How to compete</h2>
+      <p class="panel-lede">
+        Each year PSI student leadership sets a challenge theme with faculty advisors. The theme
+        points you at a real-world problem — it never dictates how you solve it.
+      </p>
+    </div>
+
+    <div class="compete-grid">
+      <ol class="steps">
+        <li><span class="step-n">1</span>
+          <div><h4>Pick your division</h4><p>Middle school contest (grades 6–8) or the high school challenge &amp; showcase (9–12).</p></div></li>
+        <li><span class="step-n">2</span>
+          <div><h4>Form a team — or don't</h4><p>Compete individually, or in a team of up to three. Both are judged on the same rubric.</p></div></li>
+        <li><span class="step-n">3</span>
+          <div><h4>Build before the event</h4><p>Projects are prepared ahead of the fair. You bring the finished work, the data, and the board.</p></div></li>
+        <li><span class="step-n">4</span>
+          <div><h4>Present to judges</h4><p>Participating teachers and faculty score against criteria written for that year's theme.</p></div></li>
+        <li><span class="step-n">5</span>
+          <div><h4>Awards at closing</h4><p>Top three high school projects are recognized. Middle school winners may advance to the high school fair.</p></div></li>
+      </ol>
+
+      <aside class="card card-accent">
+        <h4>What counts as a project</h4>
+        <ul class="checklist">
+          <li>Scientific investigation</li>
+          <li>Engineering design &amp; prototypes</li>
+          <li>Computer science and software</li>
+          <li>Environmental science</li>
+          <li>Robotics</li>
+          <li>Data science</li>
+          <li>Entrepreneurship &amp; innovation</li>
+          <li>Applied, interdisciplinary problem-solving</li>
+        </ul>
+        <p class="fine">Physical, mathematical, or theoretical — all three are fair game.</p>
+      </aside>
+
+      <aside class="card card-prize">
+        <p class="card-tag">Awards</p>
+        <h4>Recognition &amp; prizes</h4>
+        <p>Top-performing projects are recognized at the close of each event. Prize details are being
+           finalized alongside sponsorships — with local businesses and engineering firms in
+           conversation, cash awards and scholarships are a real possibility.</p>
+        <p class="pending"><span class="pend-dot" aria-hidden="true"></span>Prize structure pending sponsorship</p>
+      </aside>
+    </div>
+
+    <div class="signup-strip">
+      <div class="ss-text">
+        <p class="kicker">Registration</p>
+        <h3>Entries open through the PSI sign-up form</h3>
+        <p>One form for every division. Tell us your grade, your teammates if you have
+           them, and roughly what you're thinking about building — you can change the
+           project later.</p>
+      </div>
+      <a class="btn btn-signup" data-signup href="https://forms.gle/REPLACE-WITH-YOUR-FORM"
+         target="_blank" rel="noopener">Open the sign-up form ↗</a>
+    </div>
+  </section>
+
+  <!-- ─────────────── TIMELINE ─────────────── -->
+  <section class="panel panel-tint" id="timeline">
+    <div class="panel-head">
+      <p class="kicker">04 — Rollout</p>
+      <h2>The three-year plan</h2>
+      <p class="panel-lede">PSI is built to become permanent. Here's the sequence from first event to district tradition.</p>
+    </div>
+    <div class="years">
+      <article class="year year-1">
+        <p class="year-label">Year One</p><h3>Launch</h3>
+        <ul><li>Elementary Exploration Days</li><li>Middle School STEM Challenge</li><li>High School Challenge &amp; Showcase</li><li>Faculty support &amp; student leadership structure</li><li>First sponsorships established</li></ul>
+      </article>
+      <article class="year year-2">
+        <p class="year-label">Year Two</p><h3>Expand</h3>
+        <ul><li>Participation grows district-wide</li><li>Outreach &amp; community awareness</li><li>Stronger event operations</li><li>Deeper leadership development</li><li>Sponsorships strengthened</li></ul>
+      </article>
+      <article class="year year-3">
+        <p class="year-label">Year Three +</p><h3>Endure</h3>
+        <ul><li>A fully established annual district initiative</li><li>Continued growth in reach and impact</li><li>PSI recognized as a Pennridge tradition</li><li>Continuous, expected sponsorship</li></ul>
+      </article>
+    </div>
+  </section>
+
+  <!-- ─────────────── LEAD ─────────────── -->
+  <section class="panel" id="lead">
+    <div class="panel-head">
+      <p class="kicker">05 — Student leadership</p>
+      <h2>Run it, then hand it over</h2>
+      <p class="panel-lede">
+        Most student organizations die with their founders. PSI trains its replacements on
+        purpose: next year's officers shadow this year's event before they ever run one.
+      </p>
+    </div>
+
+    <div class="lead-grid">
+      <ul class="roles">
+        <li><span class="role-key">P</span><div><h4>President</h4><p>Sets direction, owns the annual theme, speaks for PSI to the district.</p></div></li>
+        <li><span class="role-key">VP</span><div><h4>Vice President</h4><p>Runs event operations and steps in wherever the fair needs weight.</p></div></li>
+        <li><span class="role-key">S</span><div><h4>Secretary</h4><p>Keeps the archive — documentation, resources, and the record that makes year two easier.</p></div></li>
+        <li><span class="role-key">T</span><div><h4>Treasurer</h4><p>Manages funding, sponsor relationships, and the budget for every event.</p></div></li>
+      </ul>
+      <div class="lead-notes">
+        <div class="card">
+          <h4>How continuity works</h4>
+          <ol class="mini-steps">
+            <li>Incoming officers shadow or help plan the event a full year early.</li>
+            <li>Faculty advisors provide oversight across leadership transitions.</li>
+            <li>Every event is documented into a resource archive for the next team.</li>
+            <li>Founders appoint successors in the early years; elections follow as PSI matures.</li>
+          </ol>
+        </div>
+        <div class="card card-quiet">
+          <h4>Volunteer hours that count</h4>
+          <p>High school students can serve as mentors, station leads, organizers, and judges'
+             assistants — work that pairs naturally with Key Club and National Honor Society
+             service requirements. Additional officer roles open as participation grows.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────── FOUNDERS / SUPPORT ─────────────── -->
+  <section class="panel panel-dark" id="about">
+    <div class="panel-head">
+      <p class="kicker">06 — Who's behind it</p>
+      <h2>Founded by students</h2>
+    </div>
+    <ul class="founders">
+      <li><span class="f-initials" aria-hidden="true">SA</span><h3>Soulayman Abdi</h3><p>Co-founder</p></li>
+      <li><span class="f-initials" aria-hidden="true">FB</span><h3>Fenix Bock</h3><p>Co-founder</p></li>
+      <li><span class="f-initials" aria-hidden="true">BE</span><h3>Beau Edwards</h3><p>Co-founder · Student Council Vice President</p></li>
+    </ul>
+    <div class="support">
+      <div class="support-col">
+        <h4>How it's funded</h4>
+        <p>PSI is co-hosted with Pennridge Student Council, which allocates funding to the event.
+           Support is also sought from local businesses, engineering companies, and the Pennridge
+           School District itself.</p>
+      </div>
+      <div class="support-col">
+        <h4>Sponsors &amp; partners</h4>
+        <p>Sponsorship conversations are underway — including with engineering firms such as Natoli
+           Engineering. Interested in backing a district-wide STEM program? We'd like to talk.</p>
+        <a class="link-arrow" href="#join">Become a sponsor →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────── FAQ ─────────────── -->
+  <section class="panel" id="faq">
+    <div class="panel-head">
+      <p class="kicker">07 — Questions</p>
+      <h2>Before you ask</h2>
+    </div>
+    <div class="faq">
+      <details><summary>Do I need to already be good at science?</summary>
+        <p>No. The elementary division has no scoring at all, and the contests judge how well you
+           investigated a question — not how advanced you already were. A careful experiment with a
+           clear result beats a complicated one you can't explain.</p></details>
+      <details><summary>Can I compete alone?</summary>
+        <p>Yes. Solo entries and teams of up to three are judged on the same criteria.</p></details>
+      <details><summary>What's this year's challenge theme?</summary>
+        <p>Themes are chosen each year by PSI student leadership with faculty advisors, and point
+           students toward a real-world problem. The current theme will be posted here once it's
+           set — there's also active discussion about allowing a free-range category.</p></details>
+      <details><summary>When and where is the fair?</summary>
+        <p>Dates and locations for the first year are being finalized with the district. Put your
+           name on the sign-up form and you'll hear first.</p></details>
+      <details><summary>I'm a high schooler who doesn't want to compete. Anything for me?</summary>
+        <p>Plenty. Run an elementary station, mentor a middle school team, help organize the event,
+           or join the leadership team. It's real service work and it's how most officers start.</p></details>
+      <details><summary>I'm a teacher or administrator. How can the district get involved?</summary>
+        <p>PSI is seeking faculty advisors, judges, and host schools. The founders are looking to
+           work alongside district leadership to make this a recurring program — feedback and
+           guidance are genuinely welcome.</p></details>
+    </div>
+  </section>
+
+  <!-- ─────────────── JOIN ─────────────── -->
+  <section class="join" id="join">
+    <div class="join-inner">
+      <p class="kicker">08 — Get involved</p>
+      <h2>Pick a way in</h2>
+      <div class="join-cards">
+        <a class="join-card" data-signup href="https://forms.gle/REPLACE-WITH-YOUR-FORM"
+           target="_blank" rel="noopener">
+          <span class="jc-role">Students</span>
+          <h3>Compete or volunteer</h3>
+          <p>Enter the fair, run a station, or mentor a younger team.</p>
+          <span class="link-arrow">Open the sign-up form ↗</span>
+        </a>
+        <a class="join-card" href="mailto:?subject=PSI%20—%20Faculty%20%26%20advisor%20interest">
+          <span class="jc-role">Teachers &amp; staff</span>
+          <h3>Advise or judge</h3>
+          <p>Serve as a faculty advisor, a judge, or a host school for an event.</p>
+          <span class="link-arrow">Email the founders →</span>
+        </a>
+        <a class="join-card" href="mailto:?subject=PSI%20—%20Sponsorship%20inquiry">
+          <span class="jc-role">Sponsors</span>
+          <h3>Fund a division</h3>
+          <p>Back prizes, scholarships, or supplies for a district-wide STEM pipeline.</p>
+          <span class="link-arrow">Start a conversation →</span>
+        </a>
+        <a class="join-card" data-signup href="https://forms.gle/REPLACE-WITH-YOUR-FORM"
+           target="_blank" rel="noopener">
+          <span class="jc-role">Families</span>
+          <h3>Bring a student</h3>
+          <p>Find out when Exploration Days and the fair are scheduled near you.</p>
+          <span class="link-arrow">Join the mailing list ↗</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <p class="footer-mark">Pennridge STEM Initiative</p>
+    <p class="footer-tag">Building a lasting culture of innovation, leadership, and STEM excellence
+       throughout the Pennridge School District.</p>
+    <p class="footer-fine">A student-founded proposal, co-hosted with Pennridge Student Council.
+       Dates, themes, and prize details are being finalized with the district.</p>
+  </div>
+</footer>
+
+<script src="main.js"></script>
