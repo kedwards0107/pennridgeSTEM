@@ -585,33 +585,6 @@
       function () { if (running) { running = false; cancelAnimationFrame(raf); } });
   })();
 
-  /* ---------- size the wordmark to exactly fill one line ----------
-     Measured rather than estimated: the answer depends on the real
-     metrics of Archivo once it has loaded, not on a guess. */
-  (function wordmark() {
-    var box = document.querySelector(".brand-text");
-    var el = box && box.querySelector("b");
-    if (!el) return;
-    var MAX = 40;
-
-    function fit() {
-      if (window.innerWidth > 760) { el.style.removeProperty("--wordmark-size"); return; }
-      var avail = box.clientWidth;
-      if (!avail) return;
-      el.style.fontSize = "100px";              // measure at a known size
-      var natural = el.scrollWidth;
-      el.style.fontSize = "";                   // hand control back to CSS
-      if (!natural) return;
-      var size = Math.min(avail / natural * 100 * 0.99, MAX);
-      el.style.setProperty("--wordmark-size", size.toFixed(2) + "px");
-    }
-
-    fit();
-    window.addEventListener("resize", fit);
-    window.addEventListener("orientationchange", fit);
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
-  })();
-
   /* ---------- hamburger menu ---------- */
   (function menu() {
     var btn = document.getElementById("navToggle");
@@ -644,22 +617,6 @@
     var wide = window.matchMedia("(min-width: 761px)");
     var onWide = function (e) { if (e.matches) set(false); };
     wide.addEventListener ? wide.addEventListener("change", onWide) : wide.addListener(onWide);
-  })();
-
-  /* ---------- condense the header wordmark once you scroll ---------- */
-  (function condense() {
-    var bar = document.querySelector(".topbar");
-    if (!bar) return;
-    var on = false, ticking = false;
-    function check() {
-      ticking = false;
-      var want = window.pageYOffset > 40;
-      if (want !== on) { on = want; bar.classList.toggle("is-condensed", on); }
-    }
-    window.addEventListener("scroll", function () {
-      if (!ticking) { ticking = true; requestAnimationFrame(check); }
-    }, { passive: true });
-    check();
   })();
 
   /* ---------- active section in the top nav ---------- */

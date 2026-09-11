@@ -219,22 +219,22 @@ a{ color: inherit; }
 /* hamburger — mobile only */
 .nav-toggle{
   display: none;
-  width: 48px; height: 48px; flex: none;
-  align-items: center; justify-content: center;
-  background: transparent; border: 2px solid var(--ink); border-radius: 2px;
-  cursor: pointer; padding: 0;
+  width: 44px; height: 44px; flex: none;
+  align-items: center; justify-content: flex-end;
+  background: transparent; border: 0; padding: 0;
+  cursor: pointer; color: var(--ink);
 }
-.nav-toggle .bars{ position: relative; display: block; width: 22px; height: 16px; }
+.nav-toggle .bars{ position: relative; display: block; width: 20px; height: 13px; }
 .nav-toggle .bars i{
   position: absolute; left: 0; right: 0; top: 0;
-  height: 2.5px; background: var(--ink); border-radius: 2px;
-  transition: transform .22s ease, opacity .16s ease, top .22s ease;
+  height: 1.5px; background: currentColor;
+  transition: transform .2s ease, opacity .14s ease, top .2s ease;
 }
-.nav-toggle .bars i:nth-child(2){ top: 6.75px; }
-.nav-toggle .bars i:nth-child(3){ top: 13.5px; }
-.nav-toggle.is-open .bars i:nth-child(1){ top: 6.75px; transform: rotate(45deg); }
+.nav-toggle .bars i:nth-child(2){ top: 5.75px; }
+.nav-toggle .bars i:nth-child(3){ top: 11.5px; }
+.nav-toggle.is-open .bars i:nth-child(1){ top: 5.75px; transform: rotate(45deg); }
 .nav-toggle.is-open .bars i:nth-child(2){ opacity: 0; }
-.nav-toggle.is-open .bars i:nth-child(3){ top: 6.75px; transform: rotate(-45deg); }
+.nav-toggle.is-open .bars i:nth-child(3){ top: 5.75px; transform: rotate(-45deg); }
 
 /* ───────────── hero ───────────── */
 .hero{
@@ -800,33 +800,25 @@ a{ color: inherit; }
   .hero-stats span{ font-size: .95rem; line-height: 1.45; }
   .hero-stats > div{ padding: 18px 20px; }
 
-  /* Full-width wordmark at the top of the page. The header is sticky, so it
-     condenses once you scroll rather than following you down full size. */
+  /* Compact header: the wordmark stays one line at a fixed size with the
+     district line beneath it, and the links collapse behind the hamburger. */
   .topbar{
     flex-direction: row; flex-wrap: wrap; align-items: center;
-    gap: 12px; padding-block: 16px;
+    gap: 8px; padding-block: 10px;
   }
   .brand{ gap: 9px; align-items: center; flex: 1; min-width: 0; }
-  .nav-toggle{ display: flex; width: 44px; height: 44px; }
-  .brand-mark{ width: 28px; height: 28px; flex: none; transition: width .22s ease, height .22s ease; }
-  .brand-text{ flex: 1; min-width: 0; }
+  .nav-toggle{ display: flex; }
+  .brand-mark{ width: 24px; height: 24px; flex: none; }
+  .brand-text{ flex: 1; min-width: 0; overflow: hidden; }
   .brand-text b{
     display: block;
     white-space: nowrap;
-    font-size: var(--wordmark-size, 1.3rem);
+    font-size: 1.02rem;
     font-variation-settings: "wdth" 100;
-    text-transform: uppercase;
-    letter-spacing: -0.018em;
-    line-height: 1.02;
-    transition: font-size .22s ease;
+    letter-spacing: -0.012em;
+    line-height: 1.15;
   }
-  .brand-text i{ font-size: .66rem; margin-top: 4px; transition: font-size .22s ease; }
-
-  .topbar.is-condensed{ gap: 8px; padding-block: 10px; }
-  .topbar.is-condensed .brand-mark{ width: 24px; height: 24px; }
-  .topbar.is-condensed .brand-text b{ font-size: 1.02rem; }
-  .topbar.is-condensed .brand-text i{ font-size: .6rem; margin-top: 2px; }
-  .topbar.is-condensed .nav-toggle{ width: 42px; height: 42px; }
+  .brand-text i{ font-size: .6rem; margin-top: 2px; }
 
   /* the links collapse behind the hamburger */
   .topnav{
@@ -836,11 +828,9 @@ a{ color: inherit; }
   }
   .topnav.is-open{ display: flex; }
   .topnav a{
-    width: 100%; min-height: 52px; padding: 14px 4px;
+    width: 100%; min-height: 50px; padding: 13px 2px;
     font-size: 1rem; border-radius: 0;
-    border-bottom: 1px solid var(--rule);
   }
-  .topnav a:last-child{ border-bottom: 0; }
   .topnav .topnav-cta,
   .topnav .topnav-sign{
     margin-left: 0; margin-top: 10px; border-radius: 2px;
