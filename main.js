@@ -585,6 +585,40 @@
       function () { if (running) { running = false; cancelAnimationFrame(raf); } });
   })();
 
+  /* ---------- hamburger menu ---------- */
+  (function menu() {
+    var btn = document.getElementById("navToggle");
+    var nav = document.getElementById("topnav");
+    if (!btn || !nav) return;
+
+    function set(open) {
+      nav.classList.toggle("is-open", open);
+      btn.classList.toggle("is-open", open);
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+      btn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    }
+    function isOpen() { return btn.getAttribute("aria-expanded") === "true"; }
+
+    btn.addEventListener("click", function (e) { e.stopPropagation(); set(!isOpen()); });
+
+    // jumping to a section should close the menu behind you
+    nav.addEventListener("click", function (e) {
+      if (e.target && e.target.closest && e.target.closest("a")) set(false);
+    });
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && isOpen()) { set(false); btn.focus(); }
+    });
+    document.addEventListener("click", function (e) {
+      if (isOpen() && !nav.contains(e.target) && !btn.contains(e.target)) set(false);
+    });
+
+    // leaving phone width restores the normal bar
+    var wide = window.matchMedia("(min-width: 761px)");
+    var onWide = function (e) { if (e.matches) set(false); };
+    wide.addEventListener ? wide.addEventListener("change", onWide) : wide.addListener(onWide);
+  })();
+
   /* ---------- condense the header wordmark once you scroll ---------- */
   (function condense() {
     var bar = document.querySelector(".topbar");

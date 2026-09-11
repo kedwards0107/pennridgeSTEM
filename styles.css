@@ -216,6 +216,26 @@ a{ color: inherit; }
   transform: translateY(-2px);
 }
 
+/* hamburger — mobile only */
+.nav-toggle{
+  display: none;
+  width: 48px; height: 48px; flex: none;
+  align-items: center; justify-content: center;
+  background: transparent; border: 2px solid var(--ink); border-radius: 2px;
+  cursor: pointer; padding: 0;
+}
+.nav-toggle .bars{ position: relative; display: block; width: 22px; height: 16px; }
+.nav-toggle .bars i{
+  position: absolute; left: 0; right: 0; top: 0;
+  height: 2.5px; background: var(--ink); border-radius: 2px;
+  transition: transform .22s ease, opacity .16s ease, top .22s ease;
+}
+.nav-toggle .bars i:nth-child(2){ top: 6.75px; }
+.nav-toggle .bars i:nth-child(3){ top: 13.5px; }
+.nav-toggle.is-open .bars i:nth-child(1){ top: 6.75px; transform: rotate(45deg); }
+.nav-toggle.is-open .bars i:nth-child(2){ opacity: 0; }
+.nav-toggle.is-open .bars i:nth-child(3){ top: 6.75px; transform: rotate(-45deg); }
+
 /* ───────────── hero ───────────── */
 .hero{
   position: relative;
@@ -733,7 +753,6 @@ a{ color: inherit; }
   .steps{ grid-row: auto; }
 }
 @media (max-width: 620px){
-  .topnav{ width: 100%; justify-content: flex-start; gap: 0; }
   .topnav .topnav-cta{ margin-left: 0; }
   .station-stage{ aspect-ratio: 1 / 1; }
   .station-stage-wave{ aspect-ratio: 5 / 4; }
@@ -784,10 +803,11 @@ a{ color: inherit; }
   /* Full-width wordmark at the top of the page. The header is sticky, so it
      condenses once you scroll rather than following you down full size. */
   .topbar{
-    flex-direction: column; align-items: stretch;
+    flex-direction: row; flex-wrap: wrap; align-items: center;
     gap: 12px; padding-block: 16px;
   }
-  .brand{ gap: 13px; align-items: center; }
+  .brand{ gap: 13px; align-items: center; flex: 1; min-width: 0; }
+  .nav-toggle{ display: flex; }
   .brand-mark{ width: 38px; height: 38px; flex: none; transition: width .22s ease, height .22s ease; }
   .brand-text{ flex: 1; min-width: 0; }
   .brand-text b{
@@ -802,10 +822,30 @@ a{ color: inherit; }
 
   .topbar.is-condensed{ gap: 8px; padding-block: 10px; }
   .topbar.is-condensed .brand-mark{ width: 24px; height: 24px; }
-  .topbar.is-condensed .brand-text b{ font-size: .95rem; }
-  .topbar.is-condensed .brand-text i{ font-size: 0; margin-top: 0; }
+  .topbar.is-condensed .brand-text b{ font-size: 1.02rem; }
+  .topbar.is-condensed .brand-text i{ font-size: .6rem; margin-top: 2px; }
+  .topbar.is-condensed .nav-toggle{ width: 42px; height: 42px; }
 
-  .topnav{ gap: 2px; }
+  /* the links collapse behind the hamburger */
+  .topnav{
+    flex-basis: 100%; width: 100%;
+    display: none; flex-direction: column; align-items: stretch; gap: 0;
+    border-top: 1px solid var(--rule); margin-top: 2px;
+  }
+  .topnav.is-open{ display: flex; }
+  .topnav a{
+    width: 100%; min-height: 52px; padding: 14px 4px;
+    font-size: 1rem; border-radius: 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .topnav a:last-child{ border-bottom: 0; }
+  .topnav .topnav-cta,
+  .topnav .topnav-sign{
+    margin-left: 0; margin-top: 10px; border-radius: 2px;
+    justify-content: center; font-weight: 700;
+    border-bottom: 0;
+  }
+  .topnav .topnav-sign{ margin-top: 6px; margin-bottom: 6px; }
 
   /* tap targets: nothing interactive under 44px */
   .topnav a{
