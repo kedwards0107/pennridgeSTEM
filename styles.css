@@ -335,6 +335,9 @@ a{ color: inherit; }
   white-space: nowrap;
 }
 .marquee-track span:nth-child(even){ color: var(--acid); }
+/* pausable: hover on a pointer, tap on a touchscreen */
+.marquee:hover .marquee-track,
+.marquee.is-paused .marquee-track{ animation-play-state: paused; }
 @keyframes slide{ to{ transform: translateX(-50%); } }
 
 /* ───────────── panels ───────────── */
@@ -886,6 +889,12 @@ a{ color: inherit; }
   *, *::before, *::after{
     animation-duration: .001ms !important; animation-iteration-count: 1 !important;
     transition-duration: .001ms !important; scroll-behavior: auto !important;
+  }
+  /* The discipline band is exempt: it is decorative, slow, linear, carries no
+     information found nowhere else, and can be paused by tapping it. */
+  .marquee-track{
+    animation-duration: 46s !important;
+    animation-iteration-count: infinite !important;
   }
 }
 html{ scroll-behavior: smooth; scroll-padding-top: 84px; }

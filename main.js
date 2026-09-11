@@ -585,6 +585,16 @@
       function () { if (running) { running = false; cancelAnimationFrame(raf); } });
   })();
 
+  /* ---------- tap the discipline band to pause it ---------- */
+  (function marquee() {
+    var bar = document.querySelector(".marquee");
+    if (!bar) return;
+    bar.addEventListener("pointerdown", function (e) {
+      if (e.pointerType === "mouse") return;   // mouse already pauses on hover
+      bar.classList.toggle("is-paused");
+    });
+  })();
+
   /* ---------- hamburger menu ---------- */
   (function menu() {
     var btn = document.getElementById("navToggle");
