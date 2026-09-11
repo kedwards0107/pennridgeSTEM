@@ -148,7 +148,7 @@
     window.addEventListener("resize", function () { size(); draw(); });
     size();
     draw();
-    if (!reduced) raf = requestAnimationFrame(frame);
+    raf = requestAnimationFrame(frame);
   })();
 
   /* =========================================================
@@ -510,6 +510,8 @@
     var segs = Array.prototype.slice.call(document.querySelectorAll(".seg-btn"));
 
     var W, H, ctx, t = 0, raf = 0, running = false, mode = "all";
+    var paused = false, visible = false;
+    var playBtn = document.getElementById("wavePlay");
 
     function size() { var f = fit(cv); W = f.w; H = f.h; ctx = f.ctx; }
 
@@ -566,23 +568,34 @@
     }
 
     function frame() { raf = requestAnimationFrame(frame); t += 0.055; render(); }
+    function start() { if (!running && visible && !paused) { running = true; raf = requestAnimationFrame(frame); } }
+    function stop() { if (running) { running = false; cancelAnimationFrame(raf); } }
 
-    fA.addEventListener("input", function () { fAVal.textContent = (+fA.value).toFixed(2); if (reduced) render(); });
-    ph.addEventListener("input", function () { phVal.textContent = ph.value; if (reduced) render(); });
+    if (playBtn) {
+      playBtn.addEventListener("click", function () {
+        paused = !paused;
+        playBtn.textContent = paused ? "Play" : "Pause";
+        playBtn.setAttribute("aria-pressed", paused ? "true" : "false");
+        paused ? stop() : start();
+      });
+    }
+
+    fA.addEventListener("input", function () { fAVal.textContent = (+fA.value).toFixed(2); render(); });
+    ph.addEventListener("input", function () { phVal.textContent = ph.value; render(); });
     segs.forEach(function (btn) {
       btn.addEventListener("click", function () {
         segs.forEach(function (o) { o.classList.remove("is-on"); });
         btn.classList.add("is-on");
         mode = btn.dataset.show;
-        if (reduced) render();
+        render();
       });
     });
 
     size(); render();
     window.addEventListener("resize", function () { size(); render(); });
     onScreen(cv,
-      function () { if (!running && !reduced) { running = true; raf = requestAnimationFrame(frame); } },
-      function () { if (running) { running = false; cancelAnimationFrame(raf); } });
+      function () { visible = true; start(); },
+      function () { visible = false; stop(); });
   })();
 
   /* ---------- tap the discipline band to pause it ---------- */

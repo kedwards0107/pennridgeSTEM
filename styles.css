@@ -526,6 +526,16 @@ a{ color: inherit; }
 .seg-btn + .seg-btn{ border-left: 1px solid var(--deep-line); }
 .seg-btn.is-on{ background: var(--acid); color: var(--on-acid); }
 
+/* freeze control for the travelling waves */
+.seg-solo{
+  font-family: "DM Mono", monospace; font-size: .68rem; letter-spacing: .1em;
+  text-transform: uppercase; padding: 9px 15px; cursor: pointer;
+  background: transparent; border: 1px solid var(--deep-line);
+  color: var(--deep-dim); align-self: flex-end;
+}
+.seg-solo:hover{ color: var(--deep-text); border-color: var(--deep-dim); }
+.seg-solo[aria-pressed="true"]{ color: var(--acid); border-color: var(--acid); }
+
 /* ───────────── compete ───────────── */
 .compete-grid{
   max-width: var(--maxw); margin-inline: auto;
@@ -863,6 +873,7 @@ a{ color: inherit; }
   .btn-signup{ width: 100%; text-align: center; }
   .seg{ width: 100%; }
   .seg-btn{ font-size: .8rem; padding: 14px 12px; flex: 1; min-height: 44px; }
+  .seg-solo{ width: 100%; font-size: .8rem; padding: 14px 12px; min-height: 44px; align-self: stretch; }
   .faq summary::after{ font-size: 1.6rem; }
   .join-card{ padding: 24px 22px; }
 
