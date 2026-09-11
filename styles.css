@@ -35,7 +35,7 @@
   --maxw: 1180px;
   --gutter: clamp(20px, 5vw, 72px);
 
-  --fs-display: clamp(3.1rem, 11vw, 8.2rem);
+  --fs-display: clamp(2.3rem, 11vw, 8.2rem);
   --fs-h2:      clamp(2rem, 5.2vw, 3.6rem);
   --fs-h3:      clamp(1.3rem, 2.4vw, 1.7rem);
   --fs-body:    clamp(1.02rem, 1.25vw, 1.1rem);
@@ -105,6 +105,7 @@
 
 body{
   margin: 0;
+  -webkit-text-size-adjust: 100%;
   background: var(--paper);
   color: var(--ink);
   font-family: "Newsreader", Georgia, "Times New Roman", serif;
@@ -234,6 +235,7 @@ a{ color: inherit; }
 
 .hero-title{
   font-size: var(--fs-display);
+  max-width: 100%;
   font-weight: 800;
   font-variation-settings: "wdth" 123;
   letter-spacing: -0.035em;
@@ -266,7 +268,7 @@ a{ color: inherit; }
 .btn-ghost:hover{ background: var(--ink); color: var(--paper); transform: translateY(-2px); }
 
 .hero-stats{
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr));
   gap: 1px; margin: clamp(36px, 5vw, 56px) 0 0;
   background: var(--rule); border: 1px solid var(--rule);
 }
@@ -343,7 +345,7 @@ a{ color: inherit; }
 /* ───────────── pipeline ───────────── */
 .pipeline{
   max-width: var(--maxw); margin-inline: auto;
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(min(270px, 100%), 1fr));
   gap: clamp(24px, 3vw, 40px);
 }
 .stage{ display: flex; flex-direction: column; gap: 18px; }
@@ -383,7 +385,7 @@ a{ color: inherit; }
 /* ───────────── stations ───────────── */
 .stations{
   max-width: var(--maxw); margin-inline: auto;
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(min(310px, 100%), 1fr));
   gap: clamp(20px, 2.6vw, 34px);
 }
 .station{
@@ -556,7 +558,7 @@ a{ color: inherit; }
 /* ───────────── timeline ───────────── */
 .years{
   max-width: var(--maxw); margin-inline: auto;
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
   gap: 1px; background: var(--rule); border: 1px solid var(--rule);
 }
 .year{ background: var(--paper); padding: clamp(22px, 2.6vw, 32px); }
@@ -616,7 +618,7 @@ a{ color: inherit; }
 /* ───────────── founders ───────────── */
 .founders{
   max-width: var(--maxw); margin: 0 auto clamp(40px, 5vw, 66px);
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
   gap: clamp(18px, 2.4vw, 30px);
 }
 .founders li{
@@ -637,7 +639,7 @@ a{ color: inherit; }
 
 .support{
   max-width: var(--maxw); margin-inline: auto;
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
   gap: clamp(24px, 3vw, 44px);
   border-top: 1px solid var(--deep-line); padding-top: clamp(28px, 3.4vw, 44px);
 }
@@ -690,7 +692,7 @@ a{ color: inherit; }
   margin: 16px 0 clamp(30px, 4vw, 48px);
 }
 .join-cards{
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(min(230px, 100%), 1fr));
   gap: 1px; background: var(--on-acid); border: 1px solid var(--on-acid);
 }
 .join-card{
@@ -732,11 +734,83 @@ a{ color: inherit; }
 }
 @media (max-width: 620px){
   .topnav{ width: 100%; justify-content: flex-start; gap: 0; }
-  .topnav a{ padding: 6px 9px; font-size: .78rem; }
   .topnav .topnav-cta{ margin-left: 0; }
   .station-stage{ aspect-ratio: 1 / 1; }
   .station-stage-wave{ aspect-ratio: 5 / 4; }
   .controls-row{ flex-direction: column; align-items: stretch; }
+}
+
+/* ───────────── phones & small tablets ─────────────
+   Raises the mono micro-labels to a readable size, opens up
+   line-height, and gives every control a 44px tap target. */
+@media (max-width: 760px){
+  body{ font-size: 1.06rem; line-height: 1.68; }
+
+  /* the uppercase mono label family — 11px is too small held at arm's length */
+  .kicker, .eyebrow, .station-no, .stage-grade, .year-label, .card-tag, .jc-role{
+    font-size: .8rem; letter-spacing: .12em;
+  }
+  .ripple-caption{ font-size: .78rem; letter-spacing: .08em; }
+  .brand-text i{ font-size: .68rem; }
+  .founders p{ font-size: .78rem; }
+  .footer-fine{ font-size: .82rem; line-height: 1.9; }
+  .tags li{ font-size: .78rem; letter-spacing: .05em; padding: 5px 11px; }
+
+  /* body copy across the cards and lists */
+  .hero-lede{ font-size: 1.16rem; line-height: 1.55; }
+  .panel-lede{ font-size: 1.1rem; }
+  .stage p, .steps p, .card p, .roles p, .year li, .mini-steps li,
+  .support-col p, .join-card p, .checklist li, .signup-strip p{ font-size: 1.05rem; }
+  .stage-note{ font-size: 1.04rem; }
+  .fine{ font-size: .95rem; }
+  .faq summary{ font-size: 1.14rem; padding-block: 22px; }
+  .faq details p{ font-size: 1.06rem; }
+
+  /* station instrument panels */
+  .station-sub{ font-size: .82rem; }
+  .station-why{ font-size: 1.04rem; line-height: 1.66; }
+  .station-hint{ font-size: .8rem; }
+  .readout .rl{ font-size: .76rem; letter-spacing: .08em; }
+  .readout .rv{ font-size: .95rem; }
+  .readout .rv b{ font-size: 1.32rem; }
+  .pill{ font-size: .8rem !important; padding: 3px 11px; }
+  .controls label{ font-size: .78rem; letter-spacing: .09em; }
+  .controls label b{ font-size: .95rem; }
+
+  .hero-stats dt{ font-size: .78rem; }
+  .hero-stats span{ font-size: .95rem; line-height: 1.45; }
+  .hero-stats > div{ padding: 18px 20px; }
+
+  /* tap targets: nothing interactive under 44px */
+  .topnav a{
+    font-size: .9rem; padding: 11px 13px;
+    min-height: 44px; display: flex; align-items: center;
+  }
+  .btn{ font-size: 1rem; padding: 15px 26px; }
+  .btn-signup{ width: 100%; text-align: center; }
+  .seg{ width: 100%; }
+  .seg-btn{ font-size: .8rem; padding: 14px 12px; flex: 1; min-height: 44px; }
+  .faq summary::after{ font-size: 1.6rem; }
+  .join-card{ padding: 24px 22px; }
+
+  /* fatter slider track and thumb — a 14px thumb is hard to grab */
+  .controls input[type="range"]{ height: 6px; margin: 12px 0; }
+  .controls input[type="range"]::-webkit-slider-thumb{ width: 26px; height: 26px; }
+  .controls input[type="range"]::-moz-range-thumb{ width: 20px; height: 20px; }
+
+  /* let a vertical swipe scroll the page instead of being eaten by the canvas */
+  .station-stage canvas{ touch-action: pan-y; }
+}
+
+@media (max-width: 420px){
+  .hero-title{ letter-spacing: -0.03em; }
+  .topnav a{ padding: 11px 10px; font-size: .86rem; }
+  .readout > div{ flex: 1 1 100%; }
+}
+
+/* the hero sources are mouse-draggable only; don't promise it on touch */
+@media (pointer: coarse){
+  .drag-hint{ display: none; }
 }
 
 @media (prefers-reduced-motion: reduce){

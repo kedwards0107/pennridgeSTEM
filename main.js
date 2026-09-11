@@ -127,6 +127,8 @@
       return { x: (e.clientX - r.left) / r.width, y: (e.clientY - r.top) / r.height };
     }
     hero.addEventListener("pointerdown", function (e) {
+      // touch drags belong to the page — never steal a scroll gesture
+      if (e.pointerType === "touch") return;
       var p = pos(e), best = -1, bd = 1e9;
       src.forEach(function (s, i) {
         var dx = (s.x - p.x) * W, dy = (s.y - p.y) * H, d = Math.sqrt(dx * dx + dy * dy);
