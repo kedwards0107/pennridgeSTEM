@@ -806,16 +806,18 @@ a{ color: inherit; }
     flex-direction: row; flex-wrap: wrap; align-items: center;
     gap: 12px; padding-block: 16px;
   }
-  .brand{ gap: 13px; align-items: center; flex: 1; min-width: 0; }
-  .nav-toggle{ display: flex; }
-  .brand-mark{ width: 38px; height: 38px; flex: none; transition: width .22s ease, height .22s ease; }
+  .brand{ gap: 9px; align-items: center; flex: 1; min-width: 0; }
+  .nav-toggle{ display: flex; width: 44px; height: 44px; }
+  .brand-mark{ width: 28px; height: 28px; flex: none; transition: width .22s ease, height .22s ease; }
   .brand-text{ flex: 1; min-width: 0; }
   .brand-text b{
-    font-size: clamp(1.5rem, 7.6vw, 2.5rem);
-    font-variation-settings: "wdth" 116;
+    display: block;
+    white-space: nowrap;
+    font-size: var(--wordmark-size, 1.3rem);
+    font-variation-settings: "wdth" 100;
     text-transform: uppercase;
-    letter-spacing: -0.022em;
-    line-height: .94;
+    letter-spacing: -0.018em;
+    line-height: 1.02;
     transition: font-size .22s ease;
   }
   .brand-text i{ font-size: .66rem; margin-top: 4px; transition: font-size .22s ease; }

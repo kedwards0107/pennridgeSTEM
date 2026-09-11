@@ -585,6 +585,33 @@
       function () { if (running) { running = false; cancelAnimationFrame(raf); } });
   })();
 
+  /* ---------- size the wordmark to exactly fill one line ----------
+     Measured rather than estimated: the answer depends on the real
+     metrics of Archivo once it has loaded, not on a guess. */
+  (function wordmark() {
+    var box = document.querySelector(".brand-text");
+    var el = box && box.querySelector("b");
+    if (!el) return;
+    var MAX = 40;
+
+    function fit() {
+      if (window.innerWidth > 760) { el.style.removeProperty("--wordmark-size"); return; }
+      var avail = box.clientWidth;
+      if (!avail) return;
+      el.style.fontSize = "100px";              // measure at a known size
+      var natural = el.scrollWidth;
+      el.style.fontSize = "";                   // hand control back to CSS
+      if (!natural) return;
+      var size = Math.min(avail / natural * 100 * 0.99, MAX);
+      el.style.setProperty("--wordmark-size", size.toFixed(2) + "px");
+    }
+
+    fit();
+    window.addEventListener("resize", fit);
+    window.addEventListener("orientationchange", fit);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+  })();
+
   /* ---------- hamburger menu ---------- */
   (function menu() {
     var btn = document.getElementById("navToggle");
