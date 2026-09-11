@@ -512,6 +512,7 @@
     var W, H, ctx, t = 0, raf = 0, running = false, mode = "all";
     var paused = false, visible = false;
     var playBtn = document.getElementById("wavePlay");
+    var legend = document.getElementById("waveLegend");
 
     function size() { var f = fit(cv); W = f.w; H = f.h; ctx = f.ctx; }
 
@@ -520,7 +521,7 @@
       return function (x) { return Math.sin(k * x - t + phase); };
     }
 
-    function curve(fn, amp, mid, color, width, alpha) {
+    function curve(fn, amp, mid, color, width, alpha, dash) {
       ctx.beginPath();
       for (var x = 0; x <= W; x += 2) {
         var y = mid - fn(x) * amp;
@@ -529,7 +530,9 @@
       ctx.strokeStyle = alpha === undefined ? C.css(color) : C.css(color, alpha);
       ctx.lineWidth = width;
       ctx.lineJoin = "round";
+      ctx.setLineDash(dash || []);
       ctx.stroke();
+      ctx.setLineDash([]);
     }
 
     function render() {
@@ -548,8 +551,8 @@
       var a = wave(scale, 0), b = wave(scale, phase);
 
       if (mode === "all") {
-        curve(a, amp, mid, "blue", 1.8, 0.75);
-        curve(b, amp, mid, "pink", 1.8, 0.75);
+        curve(a, amp, mid, "blue", 1.8, 0.8);
+        curve(b, amp, mid, "pink", 1.8, 0.8, [7, 5]);
       }
       curve(function (x) { return a(x) + b(x); }, amp, mid, "acid", 3);
 
@@ -587,6 +590,7 @@
         segs.forEach(function (o) { o.classList.remove("is-on"); });
         btn.classList.add("is-on");
         mode = btn.dataset.show;
+        if (legend) legend.classList.toggle("is-sum-only", mode === "sum");
         render();
       });
     });

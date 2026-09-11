@@ -526,6 +526,20 @@ a{ color: inherit; }
 .seg-btn + .seg-btn{ border-left: 1px solid var(--deep-line); }
 .seg-btn.is-on{ background: var(--acid); color: var(--on-acid); }
 
+/* key for the three plotted curves */
+.legend{ display: flex; flex-wrap: wrap; gap: 9px 20px; }
+.legend li{
+  display: flex; align-items: center; gap: 9px;
+  font-family: "DM Mono", monospace; font-size: .7rem;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--deep-dim);
+}
+.legend .sw{ width: 20px; height: 0; flex: none; border-top: 2px solid transparent; }
+.legend .sw-a{ border-top-color: var(--blue); }
+.legend .sw-b{ border-top: 2px dashed var(--pink); }
+.legend .sw-sum{ border-top: 3px solid var(--acid); }
+.legend.is-sum-only .lg-a,
+.legend.is-sum-only .lg-b{ display: none; }
+
 /* freeze control for the travelling waves */
 .seg-solo{
   font-family: "DM Mono", monospace; font-size: .68rem; letter-spacing: .1em;
@@ -812,6 +826,7 @@ a{ color: inherit; }
 
   /* station instrument panels */
   .station-sub{ font-size: .82rem; }
+  .legend li{ font-size: .78rem; }
   .station-why{ font-size: 1.04rem; line-height: 1.66; }
   .station-hint{ font-size: .8rem; }
   .readout .rl{ font-size: .76rem; letter-spacing: .08em; }
