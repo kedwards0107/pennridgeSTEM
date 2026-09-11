@@ -82,6 +82,21 @@ domains use the same two records:
 TLS certificates are issued and renewed automatically by Vercel via
 Let's Encrypt. Pushing to `main` deploys to production.
 
+## Share image
+
+`og.png` (1200x630) is what appears when the link is posted to a group
+chat, social post, or message. It is generated from `tools/og.html`,
+which uses the site's own palette, type, and interference field, so it
+stays consistent if the design changes. To regenerate after editing that
+file:
+
+```sh
+"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
+  --headless=new --disable-gpu --force-device-scale-factor=1 \
+  --hide-scrollbars --window-size=1200,630 --virtual-time-budget=9000 \
+  --screenshot="$PWD/og.png" "file://$PWD/tools/og.html"
+```
+
 ## Analytics
 
 Vercel Web Analytics is enabled on the project, with the tracking script
