@@ -3,21 +3,21 @@
   "cleanUrls": true,
   "redirects": [
     {
-      "source": "/:path*",
+      "source": "/(.*)",
       "has": [{ "type": "host", "value": "www.pennridgestem.org" }],
-      "destination": "https://pennridgestem.org/:path*",
+      "destination": "https://pennridgestem.org/$1",
       "permanent": true
     },
     {
-      "source": "/:path*",
+      "source": "/(.*)",
       "has": [{ "type": "host", "value": "pennridgestem.com" }],
-      "destination": "https://pennridgestem.org/:path*",
+      "destination": "https://pennridgestem.org/$1",
       "permanent": true
     },
     {
-      "source": "/:path*",
+      "source": "/(.*)",
       "has": [{ "type": "host", "value": "www.pennridgestem.com" }],
-      "destination": "https://pennridgestem.org/:path*",
+      "destination": "https://pennridgestem.org/$1",
       "permanent": true
     }
   ]
