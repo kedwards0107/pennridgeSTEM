@@ -1,0 +1,24 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.pennridgestem.org" }],
+      "destination": "https://pennridgestem.org/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "pennridgestem.com" }],
+      "destination": "https://pennridgestem.org/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.pennridgestem.com" }],
+      "destination": "https://pennridgestem.org/:path*",
+      "permanent": true
+    }
+  ]
+}

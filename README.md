@@ -57,6 +57,32 @@ The hero background is a live two-source ripple tank. Both sources are draggable
 4. **Prize details.** The awards card says the structure is pending sponsorship
    rather than promising amounts. Update when sponsorships are settled.
 
+## Domains
+
+Live at **https://pennridgestem.org** (Vercel project `pennridge-stem`).
+
+`pennridgestem.org` is the canonical address. Three other hostnames
+301-redirect to it, configured in `vercel.json`:
+
+| Hostname | Behaviour |
+| --- | --- |
+| `pennridgestem.org` | serves the site |
+| `www.pennridgestem.org` | → `pennridgestem.org` |
+| `pennridgestem.com` | → `pennridgestem.org` |
+| `www.pennridgestem.com` | → `pennridgestem.org` |
+
+DNS is managed at Namecheap (BasicDNS), not Vercel — so MX records for
+club email can be added there later without touching this setup. Both
+domains use the same two records:
+
+| Type | Host | Value |
+| --- | --- | --- |
+| A Record | `@` | `76.76.21.21` |
+| CNAME Record | `www` | `cname.vercel-dns.com` |
+
+TLS certificates are issued and renewed automatically by Vercel via
+Let's Encrypt. Pushing to `main` deploys to production.
+
 ## Publishing with GitHub Pages
 
 Settings → Pages → Source: *Deploy from a branch* → `main` / `/ (root)` → Save.
