@@ -852,7 +852,11 @@ a{ color: inherit; }
   .join-card{ padding: 24px 22px; }
 
   /* fatter slider track and thumb — a 14px thumb is hard to grab */
-  .controls input[type="range"]{ height: 6px; margin: 12px 0; }
+  /* The 26px thumb overhangs the 6px track by 10px, so box spacing here
+     reads much larger than it measures. Tightened to suit. */
+  .controls{ gap: 12px; }
+  .controls-row{ gap: 16px; }
+  .controls input[type="range"]{ height: 6px; margin: 10px 0 8px; }
   .controls input[type="range"]::-webkit-slider-thumb{ width: 26px; height: 26px; }
   .controls input[type="range"]::-moz-range-thumb{ width: 20px; height: 20px; }
 
