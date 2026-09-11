@@ -47,9 +47,8 @@ The hero background is a live two-source ripple tank. Both sources are draggable
    the hero CTA, the registration strip, and two Get Involved cards — so this is
    the only place the URL needs to change.
 
-2. **Contact email.** The Teachers and Sponsors cards in the Get Involved
-   section use `mailto:` links with subject lines set but no recipient. Search
-   `index.html` for `mailto:?subject=` and add the address.
+2. ~~**Contact email.**~~ Done — the Teachers and Sponsors cards email
+   `beauedwards51@gmail.com`, each with its own prefilled subject line.
 
 3. **Fair date.** The hero stat reads `TBA` and the FAQ says dates are being
    finalized. Update both once the district confirms.
