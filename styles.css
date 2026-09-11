@@ -798,8 +798,12 @@ a{ color: inherit; }
   .controls input[type="range"]::-webkit-slider-thumb{ width: 26px; height: 26px; }
   .controls input[type="range"]::-moz-range-thumb{ width: 20px; height: 20px; }
 
-  /* let a vertical swipe scroll the page instead of being eaten by the canvas */
+  /* The volcano and wave canvases have no drag interaction, so a swipe over
+     them should scroll the page. Oobleck is dragged in 2D, so it keeps the
+     gesture — and is made shorter here to leave room to scroll past it. */
   .station-stage canvas{ touch-action: pan-y; }
+  #oobleck{ touch-action: none; }
+  .station-stage-oobleck{ aspect-ratio: 4 / 3; }
 }
 
 @media (max-width: 420px){

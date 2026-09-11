@@ -166,7 +166,7 @@
 
     var W, H, ctx, P = [], R = 6.2;
     var ptr = { x: -999, y: -999, px: -999, py: -999, on: false, speed: 0 };
-    var shear = 0, jam = 0, running = false, raf = 0, touched = false;
+    var shear = 0, jam = 0, running = false, raf = 0, touched = false, visible = false;
 
     function build() {
       var f = fit(cv); W = f.w; H = f.h; ctx = f.ctx;
@@ -306,17 +306,53 @@
       ptr.x = p.x; ptr.y = p.y;
       if (!touched) { touched = true; if (hint) hint.classList.add("is-hidden"); }
     }
-    cv.addEventListener("pointerenter", function (e) { ptr.on = true; var p = local(e); ptr.x = ptr.px = p.x; ptr.y = ptr.py = p.y; });
-    cv.addEventListener("pointerleave", function () { ptr.on = false; ptr.speed = 0; });
-    cv.addEventListener("pointermove", function (e) { if (!ptr.on) { ptr.on = true; } move(e); e.preventDefault(); });
-    cv.addEventListener("pointerdown", function (e) { ptr.on = true; move(e); e.preventDefault(); });
+    function start() { if (!running && visible) { running = true; raf = requestAnimationFrame(frame); } }
+    function stop() { if (running) { running = false; cancelAnimationFrame(raf); } }
+
+    function grab(e) {
+      ptr.on = true;
+      try { cv.setPointerCapture(e.pointerId); } catch (_) {}
+      var p = local(e);
+      ptr.x = ptr.px = p.x; ptr.y = ptr.py = p.y;
+      if (!touched) { touched = true; if (hint) hint.classList.add("is-hidden"); }
+      start();               // a touch counts as consent to animate
+      e.preventDefault();
+    }
+    function release(e) {
+      ptr.on = false; ptr.speed = 0;
+      try { cv.releasePointerCapture(e.pointerId); } catch (_) {}
+    }
+
+    cv.addEventListener("pointerdown", grab);
+    cv.addEventListener("pointermove", function (e) {
+      // a mouse stirs on hover; a finger only stirs while it is down
+      if (!ptr.on) {
+        if (e.pointerType !== "mouse") return;
+        ptr.on = true;
+        var p = local(e); ptr.x = ptr.px = p.x; ptr.y = ptr.py = p.y;
+        start();
+      }
+      move(e);
+      e.preventDefault();
+    });
+    cv.addEventListener("pointerup", release);
+    cv.addEventListener("pointercancel", release);
+    cv.addEventListener("pointerenter", function (e) {
+      if (e.pointerType !== "mouse") return;
+      ptr.on = true;
+      var p = local(e); ptr.x = ptr.px = p.x; ptr.y = ptr.py = p.y;
+      start();
+    });
+    cv.addEventListener("pointerleave", function (e) {
+      if (e.pointerType === "mouse") { ptr.on = false; ptr.speed = 0; }
+    });
 
     build();
     render();
     window.addEventListener("resize", function () { build(); render(); });
     onScreen(cv,
-      function () { if (!running && !reduced) { running = true; raf = requestAnimationFrame(frame); } },
-      function () { if (running) { running = false; cancelAnimationFrame(raf); } });
+      function () { visible = true; if (!reduced) start(); },
+      function () { visible = false; stop(); });
   })();
 
   /* =========================================================
