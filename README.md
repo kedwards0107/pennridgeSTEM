@@ -83,6 +83,19 @@ domains use the same two records:
 TLS certificates are issued and renewed automatically by Vercel via
 Let's Encrypt. Pushing to `main` deploys to production.
 
+## Analytics
+
+Vercel Web Analytics is enabled on the project, with the tracking script
+loaded from `index.html`:
+
+```html
+<script defer src="/_vercel/insights/script.js"></script>
+```
+
+It is cookieless and does not track visitors across sites, which matters
+for a site aimed largely at students. Figures appear under the project's
+Analytics tab; there is no separate account or key to manage.
+
 ## Publishing with GitHub Pages
 
 Settings → Pages → Source: *Deploy from a branch* → `main` / `/ (root)` → Save.
