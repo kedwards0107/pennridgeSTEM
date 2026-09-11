@@ -585,6 +585,22 @@
       function () { if (running) { running = false; cancelAnimationFrame(raf); } });
   })();
 
+  /* ---------- condense the header wordmark once you scroll ---------- */
+  (function condense() {
+    var bar = document.querySelector(".topbar");
+    if (!bar) return;
+    var on = false, ticking = false;
+    function check() {
+      ticking = false;
+      var want = window.pageYOffset > 40;
+      if (want !== on) { on = want; bar.classList.toggle("is-condensed", on); }
+    }
+    window.addEventListener("scroll", function () {
+      if (!ticking) { ticking = true; requestAnimationFrame(check); }
+    }, { passive: true });
+    check();
+  })();
+
   /* ---------- active section in the top nav ---------- */
   (function nav() {
     var links = Array.prototype.slice.call(document.querySelectorAll(".topnav a[href^='#']"));

@@ -781,6 +781,32 @@ a{ color: inherit; }
   .hero-stats span{ font-size: .95rem; line-height: 1.45; }
   .hero-stats > div{ padding: 18px 20px; }
 
+  /* Full-width wordmark at the top of the page. The header is sticky, so it
+     condenses once you scroll rather than following you down full size. */
+  .topbar{
+    flex-direction: column; align-items: stretch;
+    gap: 12px; padding-block: 16px;
+  }
+  .brand{ gap: 13px; align-items: center; }
+  .brand-mark{ width: 38px; height: 38px; flex: none; transition: width .22s ease, height .22s ease; }
+  .brand-text{ flex: 1; min-width: 0; }
+  .brand-text b{
+    font-size: clamp(1.5rem, 7.6vw, 2.5rem);
+    font-variation-settings: "wdth" 116;
+    text-transform: uppercase;
+    letter-spacing: -0.022em;
+    line-height: .94;
+    transition: font-size .22s ease;
+  }
+  .brand-text i{ font-size: .66rem; margin-top: 4px; transition: font-size .22s ease; }
+
+  .topbar.is-condensed{ gap: 8px; padding-block: 10px; }
+  .topbar.is-condensed .brand-mark{ width: 24px; height: 24px; }
+  .topbar.is-condensed .brand-text b{ font-size: .95rem; }
+  .topbar.is-condensed .brand-text i{ font-size: 0; margin-top: 0; }
+
+  .topnav{ gap: 2px; }
+
   /* tap targets: nothing interactive under 44px */
   .topnav a{
     font-size: .9rem; padding: 11px 13px;
