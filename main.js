@@ -552,7 +552,7 @@
 
       if (mode === "all") {
         curve(a, amp, mid, "blue", 1.8, 0.8);
-        curve(b, amp, mid, "pink", 1.8, 0.8, [7, 5]);
+        curve(b, amp, mid, "pink", 1.8, 0.8);
       }
       curve(function (x) { return a(x) + b(x); }, amp, mid, "acid", 3);
 

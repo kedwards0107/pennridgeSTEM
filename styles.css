@@ -535,7 +535,7 @@ a{ color: inherit; }
 }
 .legend .sw{ width: 20px; height: 0; flex: none; border-top: 2px solid transparent; }
 .legend .sw-a{ border-top-color: var(--blue); }
-.legend .sw-b{ border-top: 2px dashed var(--pink); }
+.legend .sw-b{ border-top-color: var(--pink); }
 .legend .sw-sum{ border-top: 3px solid var(--acid); }
 .legend.is-sum-only .lg-a,
 .legend.is-sum-only .lg-b{ display: none; }
