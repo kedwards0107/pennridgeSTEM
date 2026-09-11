@@ -386,7 +386,7 @@
       chem = {
         n: n,
         vol: n * MOLAR_VOL,
-        limit: nS <= nA ? "NaHCO₃" : "CH₃COOH",
+        limit: nS <= nA ? "Baking soda" : "Vinegar",
         even: Math.abs(nS - nA) < 0.004
       };
       sodaVal.textContent = (+soda.value).toFixed(1);

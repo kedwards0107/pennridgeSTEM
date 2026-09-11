@@ -488,6 +488,15 @@ a{ color: inherit; }
   color: var(--acid); font-weight: 500; font-size: .82rem;
   font-variant-numeric: tabular-nums;
 }
+.ctl-name{ display: block; }
+/* a formula is case-sensitive, so it opts out of the label's uppercasing */
+.controls .formula{
+  font-style: normal;
+  text-transform: none;
+  letter-spacing: .01em;
+  color: var(--deep-text);
+  opacity: .7;
+}
 .controls input[type="range"]{
   -webkit-appearance: none; appearance: none;
   width: 100%; height: 3px; background: var(--deep-line);
