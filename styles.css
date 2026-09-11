@@ -527,13 +527,13 @@ a{ color: inherit; }
 .seg-btn.is-on{ background: var(--acid); color: var(--on-acid); }
 
 /* key for the three plotted curves */
-.legend{ display: flex; flex-wrap: wrap; gap: 9px 20px; }
+.legend{ display: flex; flex-wrap: nowrap; align-items: center; gap: 13px; }
 .legend li{
-  display: flex; align-items: center; gap: 9px;
-  font-family: "DM Mono", monospace; font-size: .7rem;
-  letter-spacing: .1em; text-transform: uppercase; color: var(--deep-dim);
+  display: flex; align-items: center; gap: 6px; white-space: nowrap;
+  font-family: "DM Mono", monospace; font-size: .64rem;
+  letter-spacing: .06em; text-transform: uppercase; color: var(--deep-dim);
 }
-.legend .sw{ width: 20px; height: 0; flex: none; border-top: 2px solid transparent; }
+.legend .sw{ width: 15px; height: 0; flex: none; border-top: 2px solid transparent; }
 .legend .sw-a{ border-top-color: var(--blue); }
 .legend .sw-b{ border-top-color: var(--pink); }
 .legend .sw-sum{ border-top: 3px solid var(--acid); }
@@ -826,7 +826,7 @@ a{ color: inherit; }
 
   /* station instrument panels */
   .station-sub{ font-size: .82rem; }
-  .legend li{ font-size: .78rem; }
+  .legend li{ font-size: .64rem; }
   .station-why{ font-size: 1.04rem; line-height: 1.66; }
   .station-hint{ font-size: .8rem; }
   .readout .rl{ font-size: .76rem; letter-spacing: .08em; }
