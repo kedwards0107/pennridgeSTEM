@@ -412,8 +412,10 @@
       };
       sodaVal.textContent = (+soda.value).toFixed(1);
       vinVal.textContent = vin.value;
-      oLimit.textContent = (+soda.value === 0 || +vin.value === 0) ? "—"
-                          : chem.even ? "balanced" : chem.limit;
+      var missing = (+soda.value === 0 || +vin.value === 0);
+      btn.disabled = missing;
+      btn.textContent = missing ? "Add both reagents" : "Erupt";
+      oLimit.textContent = missing ? "—" : chem.even ? "balanced" : chem.limit;
       oMol.textContent = n.toFixed(3);
       oVol.textContent = chem.vol.toFixed(1);
     }
@@ -442,6 +444,7 @@
     }
 
     function erupt() {
+      if (!chem.n) return;              // no reagent, no reaction, no plume
       var c = { cx: W / 2, cy: H * 0.42 };
       var power = Math.min(1, chem.vol / 4.5);
       var count = Math.round(20 + power * 190);
