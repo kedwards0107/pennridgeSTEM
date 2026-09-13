@@ -399,6 +399,10 @@
     var MOLAR_VOL = 24.2;      // L/mol at 22 degC, 1 atm
 
     var W, H, ctx, foam = [], raf = 0, running = false, chem = {};
+    var VOL_REF = 4.5;            // litres of CO₂ that count as a full-strength eruption
+    var MAX_ERUPT_MS = 2000;      // longest plume, reached at or above VOL_REF
+    var emitUntil = 0, emitPower = 0, emitCarry = 0;
+    function nowMs() { return (window.performance && performance.now) ? performance.now() : Date.now(); }
 
     function calc() {
       var nS = (+soda.value) / M_SODA;
@@ -443,15 +447,12 @@
       return { cx: cx, cy: peakY, baseY: baseY };
     }
 
-    function erupt() {
-      if (!chem.n) return;              // no reagent, no reaction, no plume
-      var c = { cx: W / 2, cy: H * 0.42 };
-      var power = Math.min(1, chem.vol / 4.5);
-      var count = Math.round(20 + power * 190);
+    function spawn(count, power) {
+      var cx = W / 2, cy = H * 0.42;
       for (var i = 0; i < count; i++) {
         foam.push({
-          x: c.cx + (Math.random() - 0.5) * W * 0.17,
-          y: c.cy + Math.random() * 6,
+          x: cx + (Math.random() - 0.5) * W * 0.17,
+          y: cy + Math.random() * 6,
           vx: (Math.random() - 0.5) * (1.6 + power * 3.4),
           vy: -(1.6 + power * 8.5) * (0.45 + Math.random() * 0.8),
           r: (2 + Math.random() * 4.5) * (0.6 + power * 0.8),
@@ -460,11 +461,27 @@
           hot: Math.random() < 0.35
         });
       }
+    }
+
+    /* The plume is emitted over time rather than in one burst, so the yield
+       sets how long gas keeps coming as well as how hard it leaves the crater
+       — a small batch fizzes briefly, a full one sustains for two seconds. */
+    function erupt() {
+      if (!chem.n) return;              // no reagent, no reaction, no plume
+      emitPower = Math.min(1, chem.vol / VOL_REF);
+      emitUntil = nowMs() + Math.max(200, MAX_ERUPT_MS * emitPower);
+      emitCarry = 0;
       if (!running) { running = true; raf = requestAnimationFrame(frame); }
     }
 
-    function frame() {
+    function frame(ts) {
       raf = requestAnimationFrame(frame);
+      var t = ts || nowMs();
+      if (t < emitUntil) {
+        emitCarry += 1 + emitPower * 2;          // particles per frame
+        var n = Math.floor(emitCarry);
+        if (n > 0) { spawn(n, emitPower); emitCarry -= n; }
+      }
       ctx.fillStyle = C.css("deep");
       ctx.fillRect(0, 0, W, H);
       var g = cone();
@@ -485,7 +502,7 @@
       }
 
       // fill gauge: how much of the 4.5 L reference plume this batch makes
-      var frac = Math.min(1, chem.vol / 4.5);
+      var frac = Math.min(1, chem.vol / VOL_REF);
       ctx.fillStyle = C.css("deep-line");
       ctx.fillRect(W * 0.06, H * 0.06, W * 0.05, H * 0.30);
       ctx.fillStyle = C.css("acid");
@@ -494,14 +511,14 @@
       ctx.font = "500 10px 'DM Mono', monospace";
       ctx.fillText("CO₂", W * 0.06, H * 0.055 + H * 0.30 + 14);
 
-      if (foam.length === 0) { running = false; cancelAnimationFrame(raf); }
+      if (foam.length === 0 && t >= emitUntil) { running = false; cancelAnimationFrame(raf); }
     }
 
     function still() {
       ctx.fillStyle = C.css("deep");
       ctx.fillRect(0, 0, W, H);
       cone();
-      var frac = Math.min(1, chem.vol / 4.5);
+      var frac = Math.min(1, chem.vol / VOL_REF);
       ctx.fillStyle = C.css("deep-line");
       ctx.fillRect(W * 0.06, H * 0.06, W * 0.05, H * 0.30);
       ctx.fillStyle = C.css("acid");
