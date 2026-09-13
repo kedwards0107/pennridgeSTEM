@@ -149,6 +149,12 @@ a{ color: inherit; }
   border-radius: 1px;
 }
 
+/* Two quick taps on a control are a double-tap-zoom gesture to iOS Safari,
+   which zooms the page when you tap Erupt in a hurry. "manipulation" opts
+   these out of double-tap zoom while leaving pinch-to-zoom untouched.
+   Canvases set their own touch-action and are deliberately excluded. */
+a, button, summary, label, input[type="range"]{ touch-action: manipulation; }
+
 /* ───────────── top bar ───────────── */
 .topbar{
   position: sticky; top: 0; z-index: 50;
