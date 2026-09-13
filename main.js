@@ -623,8 +623,12 @@
        depend on them staying phase-locked, which browsers do not guarantee;
        any drift there would leak sound at 180 degrees instead of cancelling. */
     var sndBtn = document.getElementById("waveSound");
-    var actx = null, osc, amp, master, soundOn = false;
-    var PEAK = 0.17;
+    var actx = null, osc, amp, master, limiter, soundOn = false;
+    /* Hearing-safety ceiling. A sustained pure sine is more fatiguing than
+       music at the same level, and this gets played through earbuds, so the
+       signal is capped around -21 dBFS. gainTo() clamps to it, and a brickwall
+       limiter sits after the gain as a backstop no code path can get past. */
+    var MAX_GAIN = 0.09;
 
     function freqNow() { return 330 / (+fA.value); }
     // normalised amplitude of the sum: |2cos(p/2)| / 2, so 0 at 180deg, 1 at 0deg
@@ -639,15 +643,24 @@
       amp = actx.createGain(); amp.gain.value = ampNow();
       osc = actx.createOscillator(); osc.type = "sine";
       osc.frequency.value = freqNow();
-      osc.connect(amp); amp.connect(master); master.connect(actx.destination);
+      limiter = actx.createDynamicsCompressor();
+      limiter.threshold.value = -18;   // above the -21 dBFS ceiling, so it is
+      limiter.knee.value = 0;          // silent in normal use and only acts if
+      limiter.ratio.value = 20;        // something ever exceeds the cap
+      limiter.attack.value = 0.003;
+      limiter.release.value = 0.10;
+      osc.connect(amp); amp.connect(master);
+      master.connect(limiter); limiter.connect(actx.destination);
       osc.start();
       return true;
     }
 
     function gainTo(v) {
       if (!actx) return;
+      var safe = Math.max(0, Math.min(v, MAX_GAIN));
       master.gain.cancelScheduledValues(actx.currentTime);
-      master.gain.setTargetAtTime(v, actx.currentTime, 0.04);
+      // slower fade in than out, so switching it on never arrives as a jolt
+      master.gain.setTargetAtTime(safe, actx.currentTime, safe > 0 ? 0.09 : 0.04);
     }
 
     function syncAudio() {
@@ -662,7 +675,7 @@
       soundOn = on;
       if (on && actx.state === "suspended") actx.resume();
       syncAudio();
-      gainTo(on && visible ? PEAK : 0);
+      gainTo(on && visible ? MAX_GAIN : 0);
       if (sndBtn) {
         sndBtn.setAttribute("aria-pressed", on ? "true" : "false");
         sndBtn.setAttribute("aria-label", on ? "Turn sound off" : "Turn sound on");
@@ -673,13 +686,13 @@
     fA.addEventListener("input", syncAudio);
     ph.addEventListener("input", syncAudio);
     document.addEventListener("visibilitychange", function () {
-      if (document.hidden) gainTo(0); else if (soundOn && visible) gainTo(PEAK);
+      if (document.hidden) gainTo(0); else if (soundOn && visible) gainTo(MAX_GAIN);
     });
 
     size(); render();
     window.addEventListener("resize", function () { size(); render(); });
     onScreen(cv,
-      function () { visible = true; start(); if (soundOn) gainTo(PEAK); },
+      function () { visible = true; start(); if (soundOn) gainTo(MAX_GAIN); },
       function () { visible = false; stop(); gainTo(0); });
   })();
 
