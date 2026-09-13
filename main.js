@@ -399,9 +399,12 @@
     var MOLAR_VOL = 24.2;      // L/mol at 22 degC, 1 atm
 
     var W, H, ctx, foam = [], raf = 0, running = false, chem = {};
-    var VOL_REF = 4.5;            // litres of CO₂ that count as a full-strength eruption
-    var MAX_ERUPT_MS = 2000;      // longest plume, reached at or above VOL_REF
-    var emitUntil = 0, emitPower = 0, emitCarry = 0;
+    /* Full scale is the most these sliders can actually produce, derived from
+       their own max attributes — so the gauge and the plume top out exactly
+       when the sliders do, not partway up. */
+    var VOL_MAX = Math.min((+soda.max) / M_SODA, (+vin.max) * ACID_G_PER_ML / M_ACID) * MOLAR_VOL;
+    var MAX_ERUPT_MS = 2000;      // longest plume, reached at full yield
+    var emitUntil = 0, emitPower = 0, emitVigor = 0, emitCarry = 0;
     function nowMs() { return (window.performance && performance.now) ? performance.now() : Date.now(); }
 
     function calc() {
@@ -468,7 +471,8 @@
        — a small batch fizzes briefly, a full one sustains for two seconds. */
     function erupt() {
       if (!chem.n) return;              // no reagent, no reaction, no plume
-      emitPower = Math.min(1, chem.vol / VOL_REF);
+      emitPower = Math.min(1, chem.vol / VOL_MAX);   // linear in CO₂: sets duration
+      emitVigor = Math.pow(emitPower, 0.55);         // eased: sets jet speed and drop size
       emitUntil = nowMs() + Math.max(200, MAX_ERUPT_MS * emitPower);
       emitCarry = 0;
       if (!running) { running = true; raf = requestAnimationFrame(frame); }
@@ -478,9 +482,9 @@
       raf = requestAnimationFrame(frame);
       var t = ts || nowMs();
       if (t < emitUntil) {
-        emitCarry += 1 + emitPower * 2;          // particles per frame
+        emitCarry += 3;                          // constant rate, so total ∝ duration ∝ CO₂
         var n = Math.floor(emitCarry);
-        if (n > 0) { spawn(n, emitPower); emitCarry -= n; }
+        if (n > 0) { spawn(n, emitVigor); emitCarry -= n; }
       }
       ctx.fillStyle = C.css("deep");
       ctx.fillRect(0, 0, W, H);
@@ -502,7 +506,7 @@
       }
 
       // fill gauge: how much of the 4.5 L reference plume this batch makes
-      var frac = Math.min(1, chem.vol / VOL_REF);
+      var frac = Math.min(1, chem.vol / VOL_MAX);
       ctx.fillStyle = C.css("deep-line");
       ctx.fillRect(W * 0.06, H * 0.06, W * 0.05, H * 0.30);
       ctx.fillStyle = C.css("acid");
@@ -518,7 +522,7 @@
       ctx.fillStyle = C.css("deep");
       ctx.fillRect(0, 0, W, H);
       cone();
-      var frac = Math.min(1, chem.vol / VOL_REF);
+      var frac = Math.min(1, chem.vol / VOL_MAX);
       ctx.fillStyle = C.css("deep-line");
       ctx.fillRect(W * 0.06, H * 0.06, W * 0.05, H * 0.30);
       ctx.fillStyle = C.css("acid");
