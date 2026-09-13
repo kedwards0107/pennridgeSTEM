@@ -365,12 +365,28 @@
             <button type="button" class="seg-btn" data-show="sum">Sum only</button>
           </div>
           <button type="button" class="seg-solo" id="wavePlay" aria-pressed="false">Pause</button>
+          <button type="button" class="seg-solo snd" id="waveSound" aria-pressed="false"
+                  aria-label="Turn sound on">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 9.5v5h3.2L12 18.5v-13L7.2 9.5H4z" fill="currentColor" stroke="none"/>
+              <path class="wv" d="M15.2 9.4a3.8 3.8 0 0 1 0 5.2"/>
+              <path class="wv" d="M17.8 7.1a7.3 7.3 0 0 1 0 9.8"/>
+              <path class="sl" d="M15.6 9.6l4.8 4.8M20.4 9.6l-4.8 4.8"/>
+            </svg>
+            <span class="snd-txt">Sound</span>
+          </button>
         </div>
         <p class="station-why">
           <b>Superposition.</b> Two waves meeting on the same string don't collide — they add. Set the
           phase to 0° and crests stack into a wave twice as tall (constructive). Set it to 180° and
           every crest lands on a trough, flattening the string to nothing (destructive). The energy
           isn't gone; it's redistributed.
+          <br><br>
+          <b>Hear it.</b> Turn on sound and the station plays two tones at the same pitch, one
+          carrying the phase offset you set. They are summed exactly as the curves are. Slide the
+          phase to 180° and the sound cancels to silence — the same effect noise-cancelling
+          headphones use. Wavelength sets the pitch: shorter wave, higher note.
         </p>
       </article>
     </div>

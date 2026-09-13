@@ -616,11 +616,86 @@
       });
     });
 
+    /* ---- audio: two tones summed, exactly as the curves are ----
+       Oscillator B carries the phase offset in its own waveform, built from
+       sin(wt + p) = sin(p)cos(wt) + cos(p)sin(wt) — so real[1] = sin(p) and
+       imag[1] = cos(p). Normalization is disabled so the two amplitudes stay
+       equal and the sum genuinely cancels at 180 degrees. */
+    var sndBtn = document.getElementById("waveSound");
+    var actx = null, oscA, oscB, master, soundOn = false;
+    var PEAK = 0.16;
+
+    function freqNow() { return 330 / (+fA.value); }
+    function phaseNow() { return (+ph.value) * Math.PI / 180; }
+
+    function phaseWave(ctx, p) {
+      return ctx.createPeriodicWave(
+        new Float32Array([0, Math.sin(p)]),
+        new Float32Array([0, Math.cos(p)]),
+        { disableNormalization: true });
+    }
+
+    function buildAudio() {
+      if (actx) return true;
+      var AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return false;
+      actx = new AC();
+      master = actx.createGain();
+      master.gain.value = 0;
+      master.connect(actx.destination);
+      var gA = actx.createGain(), gB = actx.createGain();
+      gA.gain.value = 0.5; gB.gain.value = 0.5;
+      gA.connect(master); gB.connect(master);
+      oscA = actx.createOscillator(); oscA.type = "sine";
+      oscB = actx.createOscillator();
+      oscB.setPeriodicWave(phaseWave(actx, phaseNow()));
+      var f = freqNow();
+      oscA.frequency.value = f; oscB.frequency.value = f;
+      oscA.connect(gA); oscB.connect(gB);
+      var t0 = actx.currentTime + 0.02;   // same start time keeps the phase reference honest
+      oscA.start(t0); oscB.start(t0);
+      return true;
+    }
+
+    function gainTo(v) {
+      if (!actx) return;
+      master.gain.cancelScheduledValues(actx.currentTime);
+      master.gain.setTargetAtTime(v, actx.currentTime, 0.04);
+    }
+
+    function syncAudio() {
+      if (!actx) return;
+      var f = freqNow(), t = actx.currentTime;
+      oscA.frequency.setTargetAtTime(f, t, 0.02);
+      oscB.frequency.setTargetAtTime(f, t, 0.02);
+      oscB.setPeriodicWave(phaseWave(actx, phaseNow()));
+    }
+
+    function setSound(on) {
+      if (on && !buildAudio()) return;
+      soundOn = on;
+      if (on && actx.state === "suspended") actx.resume();
+      gainTo(on && visible ? PEAK : 0);
+      if (sndBtn) {
+        sndBtn.setAttribute("aria-pressed", on ? "true" : "false");
+        sndBtn.setAttribute("aria-label", on ? "Turn sound off" : "Turn sound on");
+      }
+    }
+
+    if (sndBtn) {
+      sndBtn.addEventListener("click", function () { setSound(!soundOn); });
+    }
+    fA.addEventListener("input", syncAudio);
+    ph.addEventListener("input", syncAudio);
+    document.addEventListener("visibilitychange", function () {
+      if (document.hidden) gainTo(0); else if (soundOn && visible) gainTo(PEAK);
+    });
+
     size(); render();
     window.addEventListener("resize", function () { size(); render(); });
     onScreen(cv,
-      function () { visible = true; start(); },
-      function () { visible = false; stop(); });
+      function () { visible = true; start(); if (soundOn) gainTo(PEAK); },
+      function () { visible = false; stop(); gainTo(0); });
   })();
 
   /* ---------- tap the discipline band to pause it ---------- */
