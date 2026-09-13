@@ -480,23 +480,21 @@ a, button, summary, label, input[type="range"]{ touch-action: manipulation; }
 
 /* volcano figures, read over the animation rather than below the controls */
 .readout-overlay{
-  position: absolute; top: 10px; left: 10px; z-index: 2;
-  display: flex; flex-direction: column; gap: 0;
-  max-width: 64%;
-  background: var(--deep-2);                                  /* fallback */
-  background: color-mix(in srgb, var(--deep) 86%, transparent);
-  border: 1px solid var(--deep-line);
-  pointer-events: none;
+  position: absolute; top: 10px; right: 11px; left: auto; z-index: 2;
+  display: flex; flex-direction: column; gap: 7px;
+  max-width: 58%;
+  background: none; border: 0; pointer-events: none;
+  text-align: right;
+  /* no panel behind it, so a faint shade keeps it legible if foam passes under */
+  text-shadow: 0 1px 3px var(--deep), 0 0 6px var(--deep);
 }
 .readout-overlay > div{
-  flex: none; background: transparent;
-  padding: 5px 9px; gap: 1px;
-  border-bottom: 1px solid var(--deep-line);
+  flex: none; background: none; border: 0; padding: 0; gap: 0;
+  align-items: flex-end;
 }
-.readout-overlay > div:last-child{ border-bottom: 0; }
-.readout-overlay .rl{ font-size: .54rem; letter-spacing: .1em; }
-.readout-overlay .rv{ font-size: .72rem; }
-.readout-overlay .rv b{ font-size: .92rem; }
+.readout-overlay .rl{ font-size: .47rem; letter-spacing: .1em; }
+.readout-overlay .rv{ font-size: .62rem; }
+.readout-overlay .rv b{ font-size: .8rem; margin-right: 2px; }
 
 .station-why{
   font-size: .95rem; color: var(--deep-dim); line-height: 1.6;
@@ -882,10 +880,10 @@ a, button, summary, label, input[type="range"]{ touch-action: manipulation; }
   .readout .rl{ font-size: .76rem; letter-spacing: .08em; }
   .readout .rv{ font-size: .95rem; }
   .readout .rv b{ font-size: 1.32rem; }
-  .readout-overlay .rl{ font-size: .6rem; }
-  .readout-overlay .rv{ font-size: .8rem; }
-  .readout-overlay .rv b{ font-size: 1rem; }
-  .readout-overlay{ max-width: 70%; }
+  .readout-overlay .rl{ font-size: .53rem; }
+  .readout-overlay .rv{ font-size: .68rem; }
+  .readout-overlay .rv b{ font-size: .88rem; }
+  .readout-overlay{ max-width: 62%; gap: 6px; }
   .pill{ font-size: .8rem !important; padding: 3px 11px; }
   .controls label{ font-size: .78rem; letter-spacing: .09em; }
   .controls label b{ font-size: .95rem; }
