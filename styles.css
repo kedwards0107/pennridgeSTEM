@@ -449,6 +449,7 @@ a, button, summary, label, input[type="range"]{ touch-action: manipulation; }
   pointer-events: none; transition: opacity .4s ease;
 }
 .station-hint.is-hidden{ opacity: 0; }
+.station-hint.is-win{ color: var(--acid); }
 
 .readout{
   display: flex; flex-wrap: wrap;

@@ -167,6 +167,7 @@
     var W, H, ctx, P = [], R = 6.2;
     var ptr = { x: -999, y: -999, px: -999, py: -999, on: false, speed: 0 };
     var shear = 0, jam = 0, running = false, raf = 0, touched = false, visible = false;
+    var everSolid = false, stirred = 0, hintMode = "idle", hintTimer = 0;
 
     function build() {
       var f = fit(cv); W = f.w; H = f.h; ctx = f.ctx;
@@ -293,6 +294,26 @@
         elState.textContent = solid ? "SOLID" : "FLUID";
         elState.className = "pill " + (solid ? "pill-solid" : "pill-fluid");
       }
+
+      if (ptr.on) stirred++;
+      if (solid && !everSolid) {
+        everSolid = true;
+        setHint("Shear thickening — the grains jammed into a solid.", "win", true);
+      } else if (!everSolid && stirred > 80) {
+        setHint("Now swipe fast — speed is what locks it solid.", "fast");
+      }
+    }
+
+    /* The hint teaches the effect rather than vanishing on first contact:
+       it nudges toward speed, then names what happened once they find it. */
+    function setHint(text, mode, done) {
+      if (!hint || hintMode === mode) return;
+      hintMode = mode;
+      hint.textContent = text;
+      hint.classList.remove("is-hidden");
+      hint.classList.toggle("is-win", !!done);
+      clearTimeout(hintTimer);
+      if (done) hintTimer = setTimeout(function () { hint.classList.add("is-hidden"); }, 4500);
     }
 
     function local(e) {
@@ -304,7 +325,7 @@
       var dx = p.x - ptr.x, dy = p.y - ptr.y;
       if (ptr.on) ptr.speed = Math.max(ptr.speed, Math.sqrt(dx * dx + dy * dy));
       ptr.x = p.x; ptr.y = p.y;
-      if (!touched) { touched = true; if (hint) hint.classList.add("is-hidden"); }
+      touched = true;
     }
     function start() { if (!running && visible) { running = true; raf = requestAnimationFrame(frame); } }
     function stop() { if (running) { running = false; cancelAnimationFrame(raf); } }
@@ -314,7 +335,7 @@
       try { cv.setPointerCapture(e.pointerId); } catch (_) {}
       var p = local(e);
       ptr.x = ptr.px = p.x; ptr.y = ptr.py = p.y;
-      if (!touched) { touched = true; if (hint) hint.classList.add("is-hidden"); }
+      touched = true;
       start();               // a touch counts as consent to animate
       e.preventDefault();
     }
