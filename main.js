@@ -484,12 +484,12 @@
       // fill gauge: how much of the 4.5 L reference plume this batch makes
       var frac = Math.min(1, chem.vol / 4.5);
       ctx.fillStyle = C.css("deep-line");
-      ctx.fillRect(W * 0.06, H * 0.06, W * 0.05, H * 0.30);
+      ctx.fillRect(W * 0.88, H * 0.06, W * 0.05, H * 0.30);
       ctx.fillStyle = C.css("acid");
-      ctx.fillRect(W * 0.06, H * 0.06 + H * 0.30 * (1 - frac), W * 0.05, H * 0.30 * frac);
+      ctx.fillRect(W * 0.88, H * 0.06 + H * 0.30 * (1 - frac), W * 0.05, H * 0.30 * frac);
       ctx.fillStyle = C.css("deep-dim");
       ctx.font = "500 10px 'DM Mono', monospace";
-      ctx.fillText("CO₂", W * 0.06, H * 0.055 + H * 0.30 + 14);
+      ctx.fillText("CO₂", W * 0.88, H * 0.055 + H * 0.30 + 14);
 
       if (foam.length === 0) { running = false; cancelAnimationFrame(raf); }
     }
@@ -500,12 +500,12 @@
       cone();
       var frac = Math.min(1, chem.vol / 4.5);
       ctx.fillStyle = C.css("deep-line");
-      ctx.fillRect(W * 0.06, H * 0.06, W * 0.05, H * 0.30);
+      ctx.fillRect(W * 0.88, H * 0.06, W * 0.05, H * 0.30);
       ctx.fillStyle = C.css("acid");
-      ctx.fillRect(W * 0.06, H * 0.06 + H * 0.30 * (1 - frac), W * 0.05, H * 0.30 * frac);
+      ctx.fillRect(W * 0.88, H * 0.06 + H * 0.30 * (1 - frac), W * 0.05, H * 0.30 * frac);
       ctx.fillStyle = C.css("deep-dim");
       ctx.font = "500 10px 'DM Mono', monospace";
-      ctx.fillText("CO₂", W * 0.06, H * 0.055 + H * 0.30 + 14);
+      ctx.fillText("CO₂", W * 0.88, H * 0.055 + H * 0.30 + 14);
     }
 
     soda.addEventListener("input", function () { calc(); if (!running) still(); });

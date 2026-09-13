@@ -478,6 +478,26 @@ a, button, summary, label, input[type="range"]{ touch-action: manipulation; }
 .pill-fluid{ background: var(--blue); color: var(--on-blue) !important; }
 .pill-solid{ background: var(--pink); color: var(--on-pink) !important; }
 
+/* volcano figures, read over the animation rather than below the controls */
+.readout-overlay{
+  position: absolute; top: 10px; left: 10px; z-index: 2;
+  display: flex; flex-direction: column; gap: 0;
+  max-width: 64%;
+  background: var(--deep-2);                                  /* fallback */
+  background: color-mix(in srgb, var(--deep) 86%, transparent);
+  border: 1px solid var(--deep-line);
+  pointer-events: none;
+}
+.readout-overlay > div{
+  flex: none; background: transparent;
+  padding: 5px 9px; gap: 1px;
+  border-bottom: 1px solid var(--deep-line);
+}
+.readout-overlay > div:last-child{ border-bottom: 0; }
+.readout-overlay .rl{ font-size: .54rem; letter-spacing: .1em; }
+.readout-overlay .rv{ font-size: .72rem; }
+.readout-overlay .rv b{ font-size: .92rem; }
+
 .station-why{
   font-size: .95rem; color: var(--deep-dim); line-height: 1.6;
   border-top: 1px solid var(--deep-line); padding-top: 16px; margin-top: auto;
@@ -862,6 +882,10 @@ a, button, summary, label, input[type="range"]{ touch-action: manipulation; }
   .readout .rl{ font-size: .76rem; letter-spacing: .08em; }
   .readout .rv{ font-size: .95rem; }
   .readout .rv b{ font-size: 1.32rem; }
+  .readout-overlay .rl{ font-size: .6rem; }
+  .readout-overlay .rv{ font-size: .8rem; }
+  .readout-overlay .rv b{ font-size: 1rem; }
+  .readout-overlay{ max-width: 70%; }
   .pill{ font-size: .8rem !important; padding: 3px 11px; }
   .controls label{ font-size: .78rem; letter-spacing: .09em; }
   .controls label b{ font-size: .95rem; }

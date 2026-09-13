@@ -287,6 +287,11 @@
         </header>
         <div class="station-stage">
           <canvas id="volcano"></canvas>
+          <div class="readout readout-overlay">
+            <div><span class="rl">Limiting reagent</span><span class="rv"><b id="vLimit">Baking soda</b></span></div>
+            <div><span class="rl">CO₂ produced</span><span class="rv"><b id="vMol">0.095</b> mol</span></div>
+            <div><span class="rl">Gas volume @ 22 °C</span><span class="rv"><b id="vVol">2.3</b> L</span></div>
+          </div>
         </div>
         <div class="controls">
           <label for="soda">
@@ -300,11 +305,6 @@
             <input type="range" id="vinegar" min="0" max="400" step="5" value="120">
           </label>
           <button class="btn btn-erupt" id="eruptBtn" type="button">Erupt</button>
-        </div>
-        <div class="readout">
-          <div><span class="rl">Limiting reagent</span><span class="rv"><b id="vLimit">Baking soda</b></span></div>
-          <div><span class="rl">CO₂ produced</span><span class="rv"><b id="vMol">0.095</b> mol</span></div>
-          <div><span class="rl">Gas volume @ 22 °C</span><span class="rv"><b id="vVol">2.3</b> L</span></div>
         </div>
         <p class="station-why">
           <b>The equation.</b> NaHCO₃ + CH₃COOH → CO₂ + H₂O + NaCH₃COO. One mole of each reactant
