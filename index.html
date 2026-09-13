@@ -348,11 +348,23 @@
         <div class="station-stage station-stage-wave">
           <canvas id="string"></canvas>
         </div>
-        <ul class="legend" id="waveLegend">
-          <li class="lg-a"><span class="sw sw-a" aria-hidden="true"></span>Pulse A</li>
-          <li class="lg-b"><span class="sw sw-b" aria-hidden="true"></span>Pulse B</li>
-          <li><span class="sw sw-sum" aria-hidden="true"></span>A + B</li>
-        </ul>
+        <div class="wave-key">
+          <ul class="legend" id="waveLegend">
+            <li class="lg-a"><span class="sw sw-a" aria-hidden="true"></span>Pulse A</li>
+            <li class="lg-b"><span class="sw sw-b" aria-hidden="true"></span>Pulse B</li>
+            <li><span class="sw sw-sum" aria-hidden="true"></span>A + B</li>
+          </ul>
+          <button type="button" class="snd-icon" id="waveSound" aria-pressed="false"
+                  aria-label="Turn sound on" title="Hear the summed wave">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 9.5v5h3.2L12 18.5v-13L7.2 9.5H4z" fill="currentColor" stroke="none"/>
+              <path class="wv" d="M15.2 9.4a3.8 3.8 0 0 1 0 5.2"/>
+              <path class="wv" d="M17.8 7.1a7.3 7.3 0 0 1 0 9.8"/>
+              <path class="sl" d="M15.6 9.6l4.8 4.8M20.4 9.6l-4.8 4.8"/>
+            </svg>
+          </button>
+        </div>
         <div class="controls controls-row">
           <label for="freqA">Pulse A wavelength <b><span id="freqAVal">1.0</span>×</b>
             <input type="range" id="freqA" min="0.5" max="2" step="0.05" value="1">
@@ -365,17 +377,6 @@
             <button type="button" class="seg-btn" data-show="sum">Sum only</button>
           </div>
           <button type="button" class="seg-solo" id="wavePlay" aria-pressed="false">Pause</button>
-          <button type="button" class="seg-solo snd" id="waveSound" aria-pressed="false"
-                  aria-label="Turn sound on">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
-                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M4 9.5v5h3.2L12 18.5v-13L7.2 9.5H4z" fill="currentColor" stroke="none"/>
-              <path class="wv" d="M15.2 9.4a3.8 3.8 0 0 1 0 5.2"/>
-              <path class="wv" d="M17.8 7.1a7.3 7.3 0 0 1 0 9.8"/>
-              <path class="sl" d="M15.6 9.6l4.8 4.8M20.4 9.6l-4.8 4.8"/>
-            </svg>
-            <span class="snd-txt">Sound</span>
-          </button>
         </div>
         <p class="station-why">
           <b>Superposition.</b> Two waves meeting on the same string don't collide — they add. Set the

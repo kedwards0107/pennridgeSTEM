@@ -558,12 +558,20 @@ a, button, summary, label, input[type="range"]{ touch-action: manipulation; }
 .seg-solo:hover{ color: var(--deep-text); border-color: var(--deep-dim); }
 .seg-solo[aria-pressed="true"]{ color: var(--acid); border-color: var(--acid); }
 
-/* sound toggle: speaker with waves when on, struck through when off */
-.seg-solo.snd{ display: inline-flex; align-items: center; gap: 8px; }
-.seg-solo.snd svg{ width: 17px; height: 17px; flex: none; }
-.seg-solo.snd .wv{ display: none; }
-.seg-solo.snd[aria-pressed="true"] .wv{ display: inline; }
-.seg-solo.snd[aria-pressed="true"] .sl{ display: none; }
+/* sound toggle beside the key: speaker with waves on, struck through off */
+.wave-key{ display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+.snd-icon{
+  flex: none; width: 34px; height: 34px;
+  display: grid; place-items: center; padding: 0;
+  background: transparent; border: 1px solid var(--deep-line);
+  color: var(--deep-dim); cursor: pointer;
+}
+.snd-icon svg{ width: 17px; height: 17px; display: block; }
+.snd-icon:hover{ color: var(--deep-text); border-color: var(--deep-dim); }
+.snd-icon[aria-pressed="true"]{ color: var(--acid); border-color: var(--acid); }
+.snd-icon .wv{ display: none; }
+.snd-icon[aria-pressed="true"] .wv{ display: inline; }
+.snd-icon[aria-pressed="true"] .sl{ display: none; }
 
 /* ───────────── compete ───────────── */
 .compete-grid{
@@ -904,8 +912,8 @@ a, button, summary, label, input[type="range"]{ touch-action: manipulation; }
   .seg{ width: 100%; }
   .seg-btn{ font-size: .8rem; padding: 14px 12px; flex: 1; min-height: 44px; }
   .seg-solo{ width: 100%; font-size: .8rem; padding: 14px 12px; min-height: 44px; align-self: stretch; }
-  .seg-solo.snd{ justify-content: center; }
-  .seg-solo.snd svg{ width: 19px; height: 19px; }
+  .snd-icon{ width: 42px; height: 42px; }
+  .snd-icon svg{ width: 19px; height: 19px; }
   .faq summary::after{ font-size: 1.6rem; }
   .join-card{ padding: 24px 22px; }
 
