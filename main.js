@@ -586,8 +586,8 @@
       ctx.font = "500 11px 'DM Mono', monospace";
       ctx.fillStyle = C.css(peak < 0.35 ? "pink" : "acid");
       ctx.fillText(
-        peak < 0.35 ? "DESTRUCTIVE  ·  sum ≈ 0"
-                    : (peak > 1.85 ? "CONSTRUCTIVE  ·  sum = 2A" : "PARTIAL  ·  sum = " + peak.toFixed(2) + "A"),
+        peak < 0.05 ? "DESTRUCTIVE  ·  sum = 0"
+                    : (peak > 1.995 ? "CONSTRUCTIVE  ·  sum = 2A" : "PARTIAL  ·  sum = " + peak.toFixed(2) + "A"),
         14, 22);
     }
 
