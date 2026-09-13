@@ -559,14 +559,21 @@ a, button, summary, label, input[type="range"]{ touch-action: manipulation; }
 .seg-solo[aria-pressed="true"]{ color: var(--acid); border-color: var(--acid); }
 
 /* sound toggle beside the key: speaker with waves on, struck through off */
-.wave-key{ display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+.wave-key{
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 10px 14px;
+}
 .snd-icon{
-  flex: none; width: 40px; height: 40px;
-  display: grid; place-items: center; padding: 0;
+  flex: none; padding: 7px 11px 6px;
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
   background: transparent; border: 1px solid var(--deep-line);
   color: var(--deep-dim); cursor: pointer;
 }
 .snd-icon svg{ width: 21px; height: 21px; display: block; }
+.snd-label{
+  font-family: "DM Mono", monospace; font-size: .56rem;
+  letter-spacing: .13em; text-transform: uppercase; line-height: 1;
+}
 .snd-icon:hover{ color: var(--deep-text); border-color: var(--deep-dim); }
 .snd-icon[aria-pressed="true"]{ color: var(--acid); border-color: var(--acid); }
 .snd-icon .wv{ display: none; }
@@ -912,8 +919,9 @@ a, button, summary, label, input[type="range"]{ touch-action: manipulation; }
   .seg{ width: 100%; }
   .seg-btn{ font-size: .8rem; padding: 14px 12px; flex: 1; min-height: 44px; }
   .seg-solo{ width: 100%; font-size: .8rem; padding: 14px 12px; min-height: 44px; align-self: stretch; }
-  .snd-icon{ width: 46px; height: 46px; }
+  .snd-icon{ padding: 8px 13px 7px; }
   .snd-icon svg{ width: 23px; height: 23px; }
+  .snd-label{ font-size: .62rem; }
   .faq summary::after{ font-size: 1.6rem; }
   .join-card{ padding: 24px 22px; }
 
