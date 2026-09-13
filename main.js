@@ -403,9 +403,8 @@
        their own max attributes — so the gauge and the plume top out exactly
        when the sliders do, not partway up. */
     var VOL_MAX = Math.min((+soda.max) / M_SODA, (+vin.max) * ACID_G_PER_ML / M_ACID) * MOLAR_VOL;
-    var MAX_ERUPT_MS = 2000;      // TOTAL visible plume at full yield, first puff to last fade
-    var EMIT_SHARE = 0.6;         // of that, the share where gas is still leaving the crater
-    var emitUntil = 0, emitPower = 0, emitVigor = 0, emitCarry = 0, emitFade = 0.01;
+    var MAX_ERUPT_MS = 2000;      // longest plume, reached at full yield
+    var emitUntil = 0, emitPower = 0, emitVigor = 0, emitCarry = 0;
     function nowMs() { return (window.performance && performance.now) ? performance.now() : Date.now(); }
 
     function calc() {
@@ -461,7 +460,7 @@
           vy: -(1.6 + power * 8.5) * (0.45 + Math.random() * 0.8),
           r: (2 + Math.random() * 4.5) * (0.6 + power * 0.8),
           life: 1,
-          fade: emitFade * (1 + Math.random() * 0.4),
+          fade: 0.006 + Math.random() * 0.009,
           hot: Math.random() < 0.35
         });
       }
@@ -472,15 +471,9 @@
        — a small batch fizzes briefly, a full one sustains for two seconds. */
     function erupt() {
       if (!chem.n) return;              // no reagent, no reaction, no plume
-      emitPower = Math.min(1, chem.vol / VOL_MAX);   // linear in CO₂
+      emitPower = Math.min(1, chem.vol / VOL_MAX);   // linear in CO₂: sets duration
       emitVigor = Math.pow(emitPower, 0.55);         // eased: sets jet speed and drop size
-      /* Both halves of the plume scale, not just the emission: a drop's fade is
-         set so it dies one tail-length after leaving, otherwise a fixed fade adds
-         the same trailing seconds to every eruption and flattens the difference. */
-      var totalMs = Math.max(280, MAX_ERUPT_MS * emitPower);
-      var tailMs = totalMs * (1 - EMIT_SHARE);
-      emitFade = 1 / Math.max(6, tailMs / 1000 * 60);
-      emitUntil = nowMs() + totalMs * EMIT_SHARE;
+      emitUntil = nowMs() + Math.max(200, MAX_ERUPT_MS * emitPower);
       emitCarry = 0;
       if (!running) { running = true; raf = requestAnimationFrame(frame); }
     }
