@@ -616,44 +616,31 @@
       });
     });
 
-    /* ---- audio: two tones summed, exactly as the curves are ----
-       Oscillator B carries the phase offset in its own waveform, built from
-       sin(wt + p) = sin(p)cos(wt) + cos(p)sin(wt) — so real[1] = sin(p) and
-       imag[1] = cos(p). Normalization is disabled so the two amplitudes stay
-       equal and the sum genuinely cancels at 180 degrees. */
+    /* ---- audio: you hear the sum, and only the sum ----
+       Two waves superposing at your ear IS one resultant tone of amplitude
+       2·cos(p/2) — so the honest thing to play is that resultant, with its
+       amplitude driven straight off the phase. Summing two oscillators would
+       depend on them staying phase-locked, which browsers do not guarantee;
+       any drift there would leak sound at 180 degrees instead of cancelling. */
     var sndBtn = document.getElementById("waveSound");
-    var actx = null, oscA, oscB, master, soundOn = false;
-    var PEAK = 0.16;
+    var actx = null, osc, amp, master, soundOn = false;
+    var PEAK = 0.17;
 
     function freqNow() { return 330 / (+fA.value); }
-    function phaseNow() { return (+ph.value) * Math.PI / 180; }
-
-    function phaseWave(ctx, p) {
-      return ctx.createPeriodicWave(
-        new Float32Array([0, Math.sin(p)]),
-        new Float32Array([0, Math.cos(p)]),
-        { disableNormalization: true });
-    }
+    // normalised amplitude of the sum: |2cos(p/2)| / 2, so 0 at 180deg, 1 at 0deg
+    function ampNow() { return Math.abs(Math.cos((+ph.value) * Math.PI / 360)); }
 
     function buildAudio() {
       if (actx) return true;
       var AC = window.AudioContext || window.webkitAudioContext;
       if (!AC) return false;
       actx = new AC();
-      master = actx.createGain();
-      master.gain.value = 0;
-      master.connect(actx.destination);
-      var gA = actx.createGain(), gB = actx.createGain();
-      gA.gain.value = 0.5; gB.gain.value = 0.5;
-      gA.connect(master); gB.connect(master);
-      oscA = actx.createOscillator(); oscA.type = "sine";
-      oscB = actx.createOscillator();
-      oscB.setPeriodicWave(phaseWave(actx, phaseNow()));
-      var f = freqNow();
-      oscA.frequency.value = f; oscB.frequency.value = f;
-      oscA.connect(gA); oscB.connect(gB);
-      var t0 = actx.currentTime + 0.02;   // same start time keeps the phase reference honest
-      oscA.start(t0); oscB.start(t0);
+      master = actx.createGain(); master.gain.value = 0;
+      amp = actx.createGain(); amp.gain.value = ampNow();
+      osc = actx.createOscillator(); osc.type = "sine";
+      osc.frequency.value = freqNow();
+      osc.connect(amp); amp.connect(master); master.connect(actx.destination);
+      osc.start();
       return true;
     }
 
@@ -665,16 +652,16 @@
 
     function syncAudio() {
       if (!actx) return;
-      var f = freqNow(), t = actx.currentTime;
-      oscA.frequency.setTargetAtTime(f, t, 0.02);
-      oscB.frequency.setTargetAtTime(f, t, 0.02);
-      oscB.setPeriodicWave(phaseWave(actx, phaseNow()));
+      var t = actx.currentTime;
+      osc.frequency.setTargetAtTime(freqNow(), t, 0.02);
+      amp.gain.setTargetAtTime(ampNow(), t, 0.03);
     }
 
     function setSound(on) {
       if (on && !buildAudio()) return;
       soundOn = on;
       if (on && actx.state === "suspended") actx.resume();
+      syncAudio();
       gainTo(on && visible ? PEAK : 0);
       if (sndBtn) {
         sndBtn.setAttribute("aria-pressed", on ? "true" : "false");
@@ -682,9 +669,7 @@
       }
     }
 
-    if (sndBtn) {
-      sndBtn.addEventListener("click", function () { setSound(!soundOn); });
-    }
+    if (sndBtn) sndBtn.addEventListener("click", function () { setSound(!soundOn); });
     fA.addEventListener("input", syncAudio);
     ph.addEventListener("input", syncAudio);
     document.addEventListener("visibilitychange", function () {
