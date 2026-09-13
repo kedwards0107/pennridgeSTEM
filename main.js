@@ -587,7 +587,8 @@
       ctx.fillStyle = C.css(peak < 0.35 ? "pink" : "acid");
       ctx.fillText(
         peak < 0.05 ? "DESTRUCTIVE  ·  sum = 0"
-                    : (peak > 1.995 ? "CONSTRUCTIVE  ·  sum = 2A" : "PARTIAL  ·  sum = " + peak.toFixed(2) + "A"),
+                    : (peak > 1.995 ? "CONSTRUCTIVE  ·  sum = 2 × Amplitude"
+                                    : "PARTIAL  ·  sum = " + peak.toFixed(2) + " × Amplitude"),
         14, 22);
     }
 
