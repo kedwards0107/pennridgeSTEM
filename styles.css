@@ -275,6 +275,23 @@ a, button, summary, label, input[type="range"]{ touch-action: manipulation; }
   color: var(--blue);
   -webkit-text-stroke: 0;
 }
+/* Diagonal sash across the title. The wrapper is the positioning context so
+   the sash tracks the headline at any width rather than the whole hero. */
+.hero-title-wrap{ position: relative; }
+.hero-banner{
+  position: absolute; left: 50%; top: 50%;
+  transform: translate(-50%, -50%) rotate(-7deg);
+  z-index: 2; pointer-events: none; white-space: nowrap; max-width: 96%;
+  font-family: "Archivo", sans-serif; font-weight: 800;
+  font-variation-settings: "wdth" 110;
+  font-size: clamp(.92rem, 2.35vw, 1.85rem);
+  letter-spacing: .05em; text-transform: uppercase; line-height: 1;
+  padding: .52em 1.5em;
+  background: var(--pink); color: var(--on-pink);
+  border: 2px solid var(--on-pink);
+  box-shadow: 0 8px 26px rgba(0, 0, 0, .3);
+}
+
 .hero-lede{
   max-width: 56ch; font-size: clamp(1.1rem, 1.7vw, 1.32rem);
   color: var(--ink-2); line-height: 1.5;
@@ -1015,6 +1032,7 @@ a, button, summary, label, input[type="range"]{ touch-action: manipulation; }
 
 @media (max-width: 420px){
   .hero-title{ letter-spacing: -0.03em; }
+  .hero-banner{ font-size: .82rem; padding: .5em 1.1em; letter-spacing: .04em; }
   .topnav a{ padding: 11px 10px; font-size: .86rem; }
   .readout > div{ flex: 1 1 100%; }
 }
