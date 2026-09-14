@@ -300,11 +300,13 @@
         elState.className = "pill " + (solid ? "pill-solid" : "pill-fluid");
       }
 
-      if (ptr.on) stirred++;
+      // counts only frames where the bed is actually being dragged through,
+      // so resting a finger on it does not advance the prompt
+      if (ptr.on && shear > 0.4) stirred++;
       if (solid && !everSolid) {
         everSolid = true;
         setHint("Shear thickening — the grains jammed into a solid.", "win", true);
-      } else if (!everSolid && stirred > 80) {
+      } else if (!everSolid && stirred > 4) {
         setHint("Now swipe fast — speed is what locks it solid.", "fast");
       }
     }
