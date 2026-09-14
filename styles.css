@@ -279,14 +279,14 @@ a, button, summary, label, input[type="range"]{ touch-action: manipulation; }
    the sash tracks the headline at any width rather than the whole hero. */
 .hero-title-wrap{ position: relative; }
 .hero-banner{
-  position: absolute; left: 50%; top: 50%;
-  transform: translate(-50%, -50%) rotate(-7deg);
+  position: absolute; right: 1%; top: 94%; left: auto;
+  transform: translateY(-50%) rotate(-6deg);
   z-index: 2; pointer-events: none; white-space: nowrap; max-width: 96%;
   font-family: "Archivo", sans-serif; font-weight: 800;
-  font-variation-settings: "wdth" 110;
-  font-size: clamp(.92rem, 2.35vw, 1.85rem);
+  font-variation-settings: "wdth" 108;
+  font-size: clamp(.74rem, 1.35vw, 1.05rem);
   letter-spacing: .05em; text-transform: uppercase; line-height: 1;
-  padding: .52em 1.5em;
+  padding: .46em 1.15em;
   background: var(--pink); color: var(--on-pink);
   border: 2px solid var(--on-pink);
   box-shadow: 0 8px 26px rgba(0, 0, 0, .3);
@@ -1032,7 +1032,7 @@ a, button, summary, label, input[type="range"]{ touch-action: manipulation; }
 
 @media (max-width: 420px){
   .hero-title{ letter-spacing: -0.03em; }
-  .hero-banner{ font-size: .82rem; padding: .5em 1.1em; letter-spacing: .04em; }
+  .hero-banner{ font-size: .68rem; padding: .44em .9em; letter-spacing: .03em; }
   .topnav a{ padding: 11px 10px; font-size: .86rem; }
   .readout > div{ flex: 1 1 100%; }
 }
