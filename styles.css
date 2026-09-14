@@ -281,6 +281,7 @@ a, button, summary, label, input[type="range"]{ touch-action: manipulation; }
 }
 
 .hero-actions{ display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.hero-actions + .hero-actions{ margin-top: 12px; }
 .btn{
   font-family: "Archivo", sans-serif; font-weight: 700; font-size: .92rem;
   letter-spacing: .01em;
@@ -818,7 +819,11 @@ a, button, summary, label, input[type="range"]{ touch-action: manipulation; }
 .join-card:hover .link-arrow{ border-bottom-color: currentColor; }
 
 /* ───────────── footer ───────────── */
-.footer{ background: var(--deep); color: var(--deep-text); padding: clamp(48px, 7vw, 84px) var(--gutter); }
+.footer{
+  background: var(--deep); color: var(--deep-text);
+  border-top: 1px solid var(--deep-line);
+  padding: clamp(48px, 7vw, 84px) var(--gutter);
+}
 .footer-inner{ max-width: var(--maxw); margin-inline: auto; }
 .footer-mark{
   font-family: "Archivo", sans-serif; font-weight: 800;
