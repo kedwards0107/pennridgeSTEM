@@ -291,6 +291,12 @@ a, button, summary, label, input[type="range"]{ touch-action: manipulation; }
   border: 2px solid var(--on-pink);
   box-shadow: 0 8px 26px rgba(0, 0, 0, .3);
 }
+/* The title is two lines on desktop and three on phones, so the same
+   percentage sits far deeper into the letterforms on a wide screen.
+   Desktop drops it to the title's baseline; phones keep the tuck. */
+@media (min-width: 700px){
+  .hero-banner{ top: 104%; }
+}
 
 .hero-lede{
   max-width: 56ch; font-size: clamp(1.1rem, 1.7vw, 1.32rem);
