@@ -19,6 +19,9 @@
   --pink-soft:  #FBD2DE;
   --acid:       #C8DB1F;
   --acid-soft:  #ECF3B6;
+  /* accent for text sitting on an --ink ground, which flips between themes:
+     acid on the dark strip, a deep olive once the strip turns light */
+  --on-ink-accent: #C8DB1F;
 
   --on-blue:    #F4F5EE;
   --on-pink:    #241014;
@@ -57,6 +60,7 @@
     --pink-soft: #3B1F2A;
     --acid:      #D7E838;
     --acid-soft: #2E3316;
+    --on-ink-accent: #4F5C05;
 
     --on-blue:   #0E1120;
     --on-pink:   #23101A;
@@ -87,6 +91,7 @@
   --pink-soft: #3B1F2A;
   --acid:      #D7E838;
   --acid-soft: #2E3316;
+  --on-ink-accent: #4F5C05;
 
   --on-blue:   #0E1120;
   --on-pink:   #23101A;
@@ -202,7 +207,7 @@ a, button, summary, label, input[type="range"]{ touch-action: manipulation; }
   padding: clamp(24px, 3vw, 38px);
   background: var(--ink); color: var(--paper);
 }
-.signup-strip .kicker{ color: var(--acid); display: block; margin-bottom: 12px; }
+.signup-strip .kicker{ color: var(--on-ink-accent); display: block; margin-bottom: 12px; }
 .ss-text{ flex: 1 1 340px; }
 .signup-strip h3{
   font-size: clamp(1.4rem, 2.6vw, 2rem); font-weight: 800;
@@ -215,7 +220,7 @@ a, button, summary, label, input[type="range"]{ touch-action: manipulation; }
 }
 .btn-signup{
   flex: none; background: var(--acid); color: var(--on-acid);
-  border-color: var(--acid); font-size: 1rem; padding: 15px 28px;
+  border-color: var(--on-acid); font-size: 1rem; padding: 15px 28px;
 }
 .btn-signup:hover{
   background: var(--pink); border-color: var(--pink); color: var(--on-pink);
@@ -369,7 +374,7 @@ a, button, summary, label, input[type="range"]{ touch-action: manipulation; }
   font-size: .84rem; letter-spacing: .05em; text-transform: uppercase;
   white-space: nowrap;
 }
-.marquee-track span:nth-child(even){ color: var(--acid); }
+.marquee-track span:nth-child(even){ color: var(--on-ink-accent); }
 /* pausable: hover on a pointer, tap on a touchscreen */
 .marquee:hover .marquee-track,
 .marquee.is-paused .marquee-track{ animation-play-state: paused; }
