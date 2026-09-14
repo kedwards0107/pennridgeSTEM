@@ -282,6 +282,8 @@ a, button, summary, label, input[type="range"]{ touch-action: manipulation; }
 
 .hero-actions{ display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
 .hero-actions + .hero-actions{ margin-top: 12px; }
+/* one width for every hero button, set by the longest label */
+.hero-actions .btn{ min-width: 212px; text-align: center; }
 .btn{
   font-family: "Archivo", sans-serif; font-weight: 700; font-size: .92rem;
   letter-spacing: .01em;
@@ -293,6 +295,9 @@ a, button, summary, label, input[type="range"]{ touch-action: manipulation; }
 .btn-primary:hover{ background: var(--pink); border-color: var(--pink); color: var(--on-pink); transform: translateY(-2px); }
 .btn-ghost{ background: transparent; color: var(--ink); }
 .btn-ghost:hover{ background: var(--ink); color: var(--paper); transform: translateY(-2px); }
+/* picks up the ground of the Get Involved section it jumps to */
+.btn-acid{ background: var(--acid); color: var(--on-acid); border-color: var(--acid); }
+.btn-acid:hover{ background: var(--on-acid); color: var(--acid); border-color: var(--on-acid); transform: translateY(-2px); }
 
 .hero-stats{
   display: grid; grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr));
@@ -948,6 +953,8 @@ a, button, summary, label, input[type="range"]{ touch-action: manipulation; }
     min-height: 44px; display: flex; align-items: center;
   }
   .btn{ font-size: 1rem; padding: 15px 26px; }
+  .hero-actions{ gap: 10px; }
+  .hero-actions .btn{ flex: 1 1 100%; min-width: 0; }
   .btn-signup{ width: 100%; text-align: center; }
   .seg{ width: 100%; }
   .seg-btn{ font-size: .8rem; padding: 14px 12px; flex: 1; min-height: 44px; }
