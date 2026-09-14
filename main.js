@@ -10,7 +10,7 @@
      to every element marked data-signup: the nav button, the hero
      CTA, the registration strip, and two Get Involved cards.
      ─────────────────────────────────────────────────────────── */
-  var SIGNUP_FORM_URL = "https://forms.gle/REPLACE-WITH-YOUR-FORM";
+  var SIGNUP_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLScJpix7q33VMVvC8oPNLhUc_EbmgVjE-XVKoZhaSKe0x_TICQ/viewform";
 
   Array.prototype.forEach.call(document.querySelectorAll("[data-signup]"), function (a) {
     a.href = SIGNUP_FORM_URL;

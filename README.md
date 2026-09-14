@@ -37,15 +37,10 @@ The hero background is a live two-source ripple tank. Both sources are draggable
 
 ## Before this goes public
 
-1. **Sign-up form.** Replace the placeholder URL at the top of `main.js`:
-
-   ```js
-   var SIGNUP_FORM_URL = "https://forms.gle/REPLACE-WITH-YOUR-FORM";
-   ```
-
-   It is applied on load to every element marked `data-signup` — the nav button,
-   the hero CTA, the registration strip, and two Get Involved cards — so this is
-   the only place the URL needs to change.
+1. ~~**Sign-up form.**~~ Live. The URL sits at the top of `main.js` as
+   `SIGNUP_FORM_URL` and is applied on load to every element marked
+   `data-signup` — the nav button, the hero CTA, the registration strip, and two
+   Get Involved cards — so that constant is the only place to change it.
 
 2. ~~**Contact email.**~~ Done — the Teachers and Sponsors cards email
    `beauedwards51@gmail.com`, each with its own prefilled subject line.
