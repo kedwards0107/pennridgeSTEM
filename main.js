@@ -392,6 +392,7 @@
     var soda = document.getElementById("soda");
     var vin = document.getElementById("vinegar");
     var btn = document.getElementById("eruptBtn");
+    var volHint = document.getElementById("volcanoHint");
     var sodaVal = document.getElementById("sodaVal");
     var vinVal = document.getElementById("vinVal");
     var oLimit = document.getElementById("vLimit");
@@ -537,9 +538,33 @@
       ctx.fillText("CO₂", W * 0.06, H * 0.055 + H * 0.30 + 14);
     }
 
+    /* iOS Safari claims the bottom strip of the screen to re-reveal its toolbar,
+       so a tap on Erupt down there is swallowed. Tapping the volcano itself
+       works from anywhere on screen, and reads as the obvious thing to try. */
+    var tapFrom = null;
+    cv.style.cursor = "pointer";
+    cv.addEventListener("pointerdown", function (e) {
+      tapFrom = { x: e.clientX, y: e.clientY, t: nowMs() };
+    });
+    cv.addEventListener("pointercancel", function () { tapFrom = null; });   // became a scroll
+    cv.addEventListener("pointerup", function (e) {
+      if (!tapFrom) return;
+      var dx = e.clientX - tapFrom.x, dy = e.clientY - tapFrom.y;
+      var still_ = Math.sqrt(dx * dx + dy * dy) < 12;
+      var quick = nowMs() - tapFrom.t < 600;
+      tapFrom = null;
+      if (still_ && quick && !btn.disabled) {
+        erupt();
+        if (volHint) volHint.classList.add("is-hidden");
+      }
+    });
+
     soda.addEventListener("input", function () { calc(); if (!running) still(); });
     vin.addEventListener("input", function () { calc(); if (!running) still(); });
-    btn.addEventListener("click", erupt);
+    btn.addEventListener("click", function () {
+      erupt();
+      if (volHint) volHint.classList.add("is-hidden");
+    });
 
     size(); calc(); still();
     window.addEventListener("resize", function () { size(); still(); });

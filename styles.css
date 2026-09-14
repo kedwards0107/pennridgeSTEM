@@ -457,6 +457,13 @@ a, button, summary, label, input[type="range"]{ touch-action: manipulation; }
 }
 .station-hint.is-hidden{ opacity: 0; }
 .station-hint.is-win{ color: var(--acid); }
+/* sits below the canvas, so it cannot collide with the figures overlay */
+.tap-hint{
+  font-family: "DM Mono", monospace; font-size: .68rem;
+  letter-spacing: .06em; color: var(--deep-dim);
+  margin-top: -8px; transition: opacity .4s ease;
+}
+.tap-hint.is-hidden{ opacity: 0; }
 
 .readout{
   display: flex; flex-wrap: wrap;
@@ -893,6 +900,7 @@ a, button, summary, label, input[type="range"]{ touch-action: manipulation; }
   .legend li{ font-size: .64rem; }
   .station-why{ font-size: 1.04rem; line-height: 1.66; }
   .station-hint{ font-size: .8rem; }
+  .tap-hint{ font-size: .78rem; }
   .readout .rl{ font-size: .76rem; letter-spacing: .08em; }
   .readout .rv{ font-size: .95rem; }
   .readout .rv b{ font-size: 1.32rem; }
