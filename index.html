@@ -1,5 +1,6 @@
-<!-- Sign-up form URL lives in main.js (SIGNUP_FORM_URL); every element
-     marked data-signup picks it up, with the same URL inline as fallback. -->
+<!-- Form URLs live in main.js: SIGNUP_FORM_URL feeds every [data-signup]
+     element, SPONSOR_FORM_URL every [data-sponsor] one. The same URL sits
+     inline on each as a no-JS fallback. -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Pennridge STEM Initiative</title>
@@ -600,7 +601,8 @@
         <h4>Sponsors &amp; partners</h4>
         <p>Sponsorship conversations are underway — including with engineering firms such as Natoli
            Engineering. Interested in backing a district-wide STEM program? We'd like to talk.</p>
-        <a class="link-arrow" href="#join">Become a sponsor →</a>
+        <a class="link-arrow" data-sponsor href="https://docs.google.com/forms/d/e/1FAIpQLSfWFTd7lVgC8d6uyAIW14D5YiE9P5gx2mBli3VX3pbdvKnk6Q/viewform"
+           target="_blank" rel="noopener">Become a sponsor ↗</a>
       </div>
     </div>
   </section>
@@ -624,11 +626,12 @@
           <p>Serve as a faculty advisor, a judge, or a host school for an event.</p>
           <span class="link-arrow">Email the founders →</span>
         </a>
-        <a class="join-card" href="mailto:beauedwards51@gmail.com?subject=PSI%20—%20Sponsorship%20inquiry">
+        <a class="join-card" data-sponsor href="https://docs.google.com/forms/d/e/1FAIpQLSfWFTd7lVgC8d6uyAIW14D5YiE9P5gx2mBli3VX3pbdvKnk6Q/viewform"
+           target="_blank" rel="noopener">
           <span class="jc-role">Sponsors</span>
           <h3>Fund a division</h3>
           <p>Back prizes, scholarships, or supplies for a district-wide STEM pipeline.</p>
-          <span class="link-arrow">Start a conversation →</span>
+          <span class="link-arrow">Open the sponsorship form ↗</span>
         </a>
         <a class="join-card" data-signup href="https://docs.google.com/forms/d/e/1FAIpQLScJpix7q33VMVvC8oPNLhUc_EbmgVjE-XVKoZhaSKe0x_TICQ/viewform"
            target="_blank" rel="noopener">

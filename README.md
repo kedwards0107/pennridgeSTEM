@@ -42,8 +42,10 @@ The hero background is a live two-source ripple tank. Both sources are draggable
    `data-signup` — the nav button, the hero CTA, the registration strip, and two
    Get Involved cards — so that constant is the only place to change it.
 
-2. ~~**Contact email.**~~ Done — the Teachers and Sponsors cards email
-   `beauedwards51@gmail.com`, each with its own prefilled subject line.
+2. ~~**Contact email.**~~ Done — the Teachers card emails
+   `beauedwards51@gmail.com`. Sponsors now go to a dedicated Google Form
+   (`SPONSOR_FORM_URL` in `main.js`, applied to every `[data-sponsor]`
+   element).
 
 3. **Fair date.** The hero stat reads `TBA` and the FAQ says dates are being
    finalized. Update both once the district confirms.
