@@ -172,6 +172,10 @@
     var elShear = document.getElementById("ooShear");
     var elVisc = document.getElementById("ooVisc");
     var elState = document.getElementById("ooState");
+    var elKnob = document.getElementById("ooKnob");
+    var elLabels = document.querySelectorAll(".phase-labels li");
+    var PHASE_NAMES = ["Liquid", "Semi-solid", "Solid"];
+    var phaseIdx = -1;
 
     var W, H, ctx, P = [], R = 6.2;
     var ptr = { x: -999, y: -999, px: -999, py: -999, on: false, speed: 0 };
@@ -298,11 +302,17 @@
       var eta = 1.2 * Math.pow(g, 0.7);
       elShear.textContent = shear.toFixed(1);
       elVisc.textContent = (shear < 0.15 ? 1.2 : eta).toFixed(1);
-      var solid = jam > 0.5;
-      if (elState.textContent !== (solid ? "SOLID" : "FLUID")) {
-        elState.textContent = solid ? "SOLID" : "FLUID";
-        elState.className = "pill " + (solid ? "pill-solid" : "pill-fluid");
+      // the knob rides the jam value, so the reading is continuous
+      var pos = Math.max(0, Math.min(1, jam));
+      if (elKnob) elKnob.style.left = (pos * 100).toFixed(1) + "%";
+      var idx = pos < 0.34 ? 0 : (pos < 0.67 ? 1 : 2);
+      if (idx !== phaseIdx) {
+        phaseIdx = idx;
+        if (elKnob) elKnob.style.background = ["var(--blue)", "var(--acid)", "var(--pink)"][idx];
+        for (var q = 0; q < elLabels.length; q++) elLabels[q].classList.toggle("on", q === idx);
+        elState.textContent = PHASE_NAMES[idx];
       }
+      var solid = jam > 0.5;
 
       // counts only frames where the bed is actually being dragged through,
       // so resting a finger on it does not advance the prompt

@@ -477,12 +477,41 @@ a, button, summary, label, input[type="range"]{ touch-action: manipulation; }
   font-weight: 500; font-size: 1.12rem; color: var(--acid);
   margin-right: 3px;
 }
-.pill{
-  display: inline-block; padding: 2px 9px; border-radius: 999px;
-  font-size: .72rem !important; letter-spacing: .12em;
+/* Shear thickening is continuous, so the state reads as a position on a
+   scale rather than a binary badge. */
+.phase{
+  background: var(--deep-2);
+  border: 1px solid var(--deep-line);
+  padding: 12px 13px 13px;
+  display: flex; flex-direction: column; gap: 11px;
 }
-.pill-fluid{ background: var(--blue); color: var(--on-blue) !important; }
-.pill-solid{ background: var(--pink); color: var(--on-pink) !important; }
+.phase-track{ position: relative; height: 4px; }
+.phase-track::before{
+  content: ""; position: absolute; inset: 0; border-radius: 999px;
+  background: linear-gradient(90deg, var(--blue), var(--acid), var(--pink));
+  opacity: .42;
+}
+.phase-knob{
+  position: absolute; top: 50%; left: 0;
+  width: 15px; height: 15px; border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--blue); border: 2px solid var(--deep-2);
+  transition: background .3s ease;
+}
+.phase-labels{ display: flex; justify-content: space-between; }
+.phase-labels li{
+  font-family: "DM Mono", monospace; font-size: .6rem;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--deep-dim); transition: color .3s ease;
+}
+.phase-labels li:nth-child(1).on{ color: var(--blue); }
+.phase-labels li:nth-child(2).on{ color: var(--acid); }
+.phase-labels li:nth-child(3).on{ color: var(--pink); }
+
+.sr-only{
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
 
 /* volcano figures, read over the animation rather than below the controls */
 .readout-overlay{
@@ -889,7 +918,8 @@ a, button, summary, label, input[type="range"]{ touch-action: manipulation; }
   .readout-overlay .rv{ font-size: .68rem; }
   .readout-overlay .rv b{ font-size: .88rem; }
   .readout-overlay{ max-width: 62%; gap: 6px; }
-  .pill{ font-size: .8rem !important; padding: 3px 11px; }
+  .phase-labels li{ font-size: .68rem; }
+  .phase-knob{ width: 17px; height: 17px; }
   .controls label{ font-size: .78rem; letter-spacing: .09em; }
   .controls label b{ font-size: .95rem; }
 

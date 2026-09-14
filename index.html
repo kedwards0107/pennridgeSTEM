@@ -391,7 +391,16 @@
         <div class="readout">
           <div><span class="rl">Shear rate</span><span class="rv"><b id="ooShear">0</b> s⁻¹</span></div>
           <div><span class="rl">Apparent viscosity</span><span class="rv"><b id="ooVisc">1.2</b> Pa·s</span></div>
-          <div><span class="rl">State</span><span class="rv"><b id="ooState" class="pill pill-fluid">FLUID</b></span></div>
+        </div>
+        <div class="phase">
+          <span class="rl">State</span>
+          <div class="phase-track">
+            <span class="phase-knob" id="ooKnob"></span>
+          </div>
+          <ul class="phase-labels">
+            <li>Liquid</li><li>Semi-solid</li><li>Solid</li>
+          </ul>
+          <span class="sr-only" id="ooState" aria-live="polite">Liquid</span>
         </div>
         <p class="station-why">
           <b>Why it happens.</b> Cornstarch grains float in water with a thin lubricating layer between
