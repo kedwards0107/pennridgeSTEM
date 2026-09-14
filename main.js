@@ -391,8 +391,7 @@
     if (!cv) return;
     var soda = document.getElementById("soda");
     var vin = document.getElementById("vinegar");
-    var btn = document.getElementById("eruptBtn");
-    var volHint = document.getElementById("volcanoHint");
+    var canErupt = true;
     var sodaVal = document.getElementById("sodaVal");
     var vinVal = document.getElementById("vinVal");
     var oLimit = document.getElementById("vLimit");
@@ -426,8 +425,7 @@
       sodaVal.textContent = (+soda.value).toFixed(1);
       vinVal.textContent = vin.value;
       var missing = (+soda.value === 0 || +vin.value === 0);
-      btn.disabled = missing;
-      btn.textContent = missing ? "Add both reagents" : "Erupt";
+      canErupt = !missing;
       oLimit.textContent = missing ? "—" : chem.even ? "balanced" : chem.limit;
       oMol.textContent = n.toFixed(3);
       oVol.textContent = chem.vol.toFixed(1);
@@ -453,6 +451,16 @@
       ctx.beginPath();
       ctx.ellipse(cx, peakY, W * 0.105, H * 0.028, 0, 0, 6.2832);
       ctx.fill();
+
+      // the only control: a prompt across the base of the cone
+      ctx.save();
+      ctx.textAlign = "center";
+      ctx.font = "500 " + Math.max(11, Math.round(W * 0.036)) + "px 'DM Mono', monospace";
+      if (ctx.letterSpacing !== undefined) ctx.letterSpacing = "0.14em";
+      ctx.fillStyle = canErupt ? C.css("acid") : C.css("deep-dim");
+      ctx.fillText(canErupt ? "TAP TO ERUPT" : "ADD BOTH REAGENTS", cx, baseY - H * 0.05);
+      ctx.restore();
+
       return { cx: cx, cy: peakY, baseY: baseY };
     }
 
@@ -553,18 +561,11 @@
       var still_ = Math.sqrt(dx * dx + dy * dy) < 12;
       var quick = nowMs() - tapFrom.t < 600;
       tapFrom = null;
-      if (still_ && quick && !btn.disabled) {
-        erupt();
-        if (volHint) volHint.classList.add("is-hidden");
-      }
+      if (still_ && quick && canErupt) erupt();
     });
 
     soda.addEventListener("input", function () { calc(); if (!running) still(); });
     vin.addEventListener("input", function () { calc(); if (!running) still(); });
-    btn.addEventListener("click", function () {
-      erupt();
-      if (volHint) volHint.classList.add("is-hidden");
-    });
 
     size(); calc(); still();
     window.addEventListener("resize", function () { size(); still(); });
