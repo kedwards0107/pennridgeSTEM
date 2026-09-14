@@ -1,6 +1,7 @@
-<!-- Form URLs live in main.js: SIGNUP_FORM_URL feeds every [data-signup]
-     element, SPONSOR_FORM_URL every [data-sponsor] one. The same URL sits
-     inline on each as a no-JS fallback. -->
+<!-- Form URLs live in main.js and are applied by attribute:
+     SIGNUP_FORM_URL → [data-signup], SPONSOR_FORM_URL → [data-sponsor],
+     MAILING_FORM_URL → [data-mailing]. Each element also carries its URL
+     inline as a no-JS fallback. -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Pennridge STEM Initiative</title>
@@ -483,7 +484,7 @@
           <p>Back prizes, scholarships, or supplies for a district-wide STEM pipeline.</p>
           <span class="link-arrow">Open the sponsorship form ↗</span>
         </a>
-        <a class="join-card" data-signup href="https://docs.google.com/forms/d/e/1FAIpQLScJpix7q33VMVvC8oPNLhUc_EbmgVjE-XVKoZhaSKe0x_TICQ/viewform"
+        <a class="join-card" data-mailing href="https://docs.google.com/forms/d/e/1FAIpQLScuTpEN5VTPQmHNjeYTL1SYbk5AamcCIb2fogCdf-NvYgZchQ/viewform"
            target="_blank" rel="noopener">
           <span class="jc-role">Families</span>
           <h3>Bring a student</h3>

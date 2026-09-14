@@ -39,8 +39,9 @@ The hero background is a live two-source ripple tank. Both sources are draggable
 
 1. ~~**Sign-up form.**~~ Live. The URL sits at the top of `main.js` as
    `SIGNUP_FORM_URL` and is applied on load to every element marked
-   `data-signup` — the nav button, the hero CTA, the registration strip, and two
-   Get Involved cards — so that constant is the only place to change it.
+   `data-signup` — the nav button, the hero CTA, the registration strip, and the
+   Students card. Two further forms are wired the same way: `SPONSOR_FORM_URL`
+   for `[data-sponsor]` and `MAILING_FORM_URL` for `[data-mailing]`.
 
 2. ~~**Contact email.**~~ Done — the Teachers card emails
    `beauedwards51@gmail.com`. Sponsors now go to a dedicated Google Form

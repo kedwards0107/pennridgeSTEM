@@ -13,12 +13,16 @@
   var SIGNUP_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLScJpix7q33VMVvC8oPNLhUc_EbmgVjE-XVKoZhaSKe0x_TICQ/viewform";
 
   var SPONSOR_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSfWFTd7lVgC8d6uyAIW14D5YiE9P5gx2mBli3VX3pbdvKnk6Q/viewform";
+  var MAILING_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLScuTpEN5VTPQmHNjeYTL1SYbk5AamcCIb2fogCdf-NvYgZchQ/viewform";
 
   Array.prototype.forEach.call(document.querySelectorAll("[data-signup]"), function (a) {
     a.href = SIGNUP_FORM_URL;
   });
   Array.prototype.forEach.call(document.querySelectorAll("[data-sponsor]"), function (a) {
     a.href = SPONSOR_FORM_URL;
+  });
+  Array.prototype.forEach.call(document.querySelectorAll("[data-mailing]"), function (a) {
+    a.href = MAILING_FORM_URL;
   });
 
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
